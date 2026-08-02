@@ -26,6 +26,16 @@ type DashboardStatus = { requiresActivation: boolean; files: PublishedFile[] };
 type NoticeState = { kind: "success" | "error"; text: string };
 type EditorState = { originalId: string | null; value: JsonObject };
 type LiveRecord = { file_name: string; version: number; payload_base64: string };
+type Entitlement = {
+  subjectHash: string;
+  accessSuffix: string;
+  label: string;
+  accessLevel: "trial" | "full";
+  expiresAt: number | null;
+  enabled: boolean;
+  status: "active" | "expired" | "disabled";
+  updatedAt: number;
+};
 
 export function AdminPortal({ user }: { user: SignedInUser | null }) {
   const [dashboard, setDashboard] = useState<DashboardStatus | null>(null);
@@ -132,6 +142,7 @@ function CurriculumWorkspace({
   const [minimumBuild, setMinimumBuild] = useState(1);
   const [editor, setEditor] = useState<EditorState | null>(null);
   const [notice, setNotice] = useState<NoticeState | null>(initialNotice);
+  const [workspaceMode, setWorkspaceMode] = useState<"curriculum" | "access">("curriculum");
 
   const publishedByName = useMemo(
     () => new Map(dashboard.files.map((file) => [file.fileName, file])),
@@ -334,7 +345,18 @@ function CurriculumWorkspace({
         <div className="account-block"><span>{user.email}</span><a href="/signout-with-chatgpt?return_to=%2F">Sign out</a></div>
       </header>
 
-      <div className="studio-layout">
+      <nav className="workspace-switcher" aria-label="Owner tools">
+        <button className={workspaceMode === "curriculum" ? "selected" : ""} onClick={() => setWorkspaceMode("curriculum")}>
+          Curriculum
+        </button>
+        <button className={workspaceMode === "access" ? "selected" : ""} onClick={() => setWorkspaceMode("access")}>
+          User access
+        </button>
+      </nav>
+
+      {workspaceMode === "curriculum" ? (
+        <>
+          <div className="studio-layout">
         <nav className="section-nav" aria-label="Curriculum sections">
           <div className="nav-heading">
             <span className="live-dot" aria-hidden="true" />
@@ -442,20 +464,235 @@ function CurriculumWorkspace({
             {published && <p>Current version published {formatDate(published.publishedAt)} for app build {published.minimumBuild} and later.</p>}
           </details>
         </section>
-      </div>
+          </div>
 
-      {editor && (
-        <ContentEditor
-          fileName={selectedFile}
-          title={`${editor.originalId ? "Edit" : "Add"} ${selectedConfig.singular}`}
-          initialValue={editor.value}
-          onCancel={() => setEditor(null)}
-          onSave={saveDraftItem}
-          setNotice={setNotice}
-        />
+          {editor && (
+            <ContentEditor
+              fileName={selectedFile}
+              title={`${editor.originalId ? "Edit" : "Add"} ${selectedConfig.singular}`}
+              initialValue={editor.value}
+              onCancel={() => setEditor(null)}
+              onSave={saveDraftItem}
+              setNotice={setNotice}
+            />
+          )}
+        </>
+      ) : (
+        <AccessManager />
       )}
     </main>
   );
+}
+
+function AccessManager() {
+  const [entitlements, setEntitlements] = useState<Entitlement[]>([]);
+  const [accessId, setAccessId] = useState("");
+  const [label, setLabel] = useState("");
+  const [accessLevel, setAccessLevel] = useState<"trial" | "full">("trial");
+  const [trialDays, setTrialDays] = useState(14);
+  const [isLoading, setIsLoading] = useState(true);
+  const [busyId, setBusyId] = useState<string | null>(null);
+  const [notice, setNotice] = useState<NoticeState | null>(null);
+
+  const loadEntitlements = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/admin/entitlements", { cache: "no-store" });
+      const payload = (await response.json()) as { entitlements?: Entitlement[]; error?: string };
+      if (!response.ok) throw new Error(payload.error ?? "User access could not be loaded.");
+      setEntitlements(payload.entitlements ?? []);
+    } catch (error) {
+      setNotice({ kind: "error", text: error instanceof Error ? error.message : "User access could not be loaded." });
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => { void loadEntitlements(); }, 0);
+    return () => window.clearTimeout(timer);
+  }, [loadEntitlements]);
+
+  async function createAccess(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setBusyId("new");
+    setNotice(null);
+    try {
+      await saveAccess({ accessId, label, accessLevel, trialDays, enabled: true });
+      setAccessId("");
+      setLabel("");
+      await loadEntitlements();
+      setNotice({ kind: "success", text: accessLevel === "full" ? "Full access is active for this learner." : `${trialDays}-day trial access is active.` });
+    } catch (error) {
+      setNotice({ kind: "error", text: error instanceof Error ? error.message : "Access could not be activated." });
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  async function updateAccess(item: Entitlement, change: "full" | "trial" | "extend" | "toggle") {
+    setBusyId(item.subjectHash);
+    setNotice(null);
+    try {
+      const body = change === "full"
+        ? { subjectHash: item.subjectHash, label: item.label, accessLevel: "full", enabled: true }
+        : change === "trial"
+          ? { subjectHash: item.subjectHash, label: item.label, accessLevel: "trial", trialDays: 14, enabled: true }
+          : change === "extend"
+            ? { subjectHash: item.subjectHash, label: item.label, accessLevel: "trial", trialDays: 30, extendTrial: true, enabled: true }
+            : { subjectHash: item.subjectHash, label: item.label, accessLevel: item.accessLevel, preserveExpiry: true, enabled: !item.enabled };
+      await saveAccess(body);
+      await loadEntitlements();
+      setNotice({ kind: "success", text: change === "toggle" ? `Access ${item.enabled ? "paused" : "reactivated"}.` : "Learner access updated." });
+    } catch (error) {
+      setNotice({ kind: "error", text: error instanceof Error ? error.message : "Access could not be updated." });
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  async function deleteAccess(item: Entitlement) {
+    if (!window.confirm(`Remove access for ${item.label}? StoreKit purchases will not be affected.`)) return;
+    setBusyId(item.subjectHash);
+    setNotice(null);
+    try {
+      const response = await fetch(`/api/admin/entitlements?subject_hash=${encodeURIComponent(item.subjectHash)}`, { method: "DELETE" });
+      const payload = (await response.json()) as { error?: string };
+      if (!response.ok) throw new Error(payload.error ?? "Access could not be removed.");
+      await loadEntitlements();
+      setNotice({ kind: "success", text: "Backend access removed. StoreKit purchases remain valid." });
+    } catch (error) {
+      setNotice({ kind: "error", text: error instanceof Error ? error.message : "Access could not be removed." });
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  const activeCount = entitlements.filter((item) => item.status === "active").length;
+  const trialCount = entitlements.filter((item) => item.status === "active" && item.accessLevel === "trial").length;
+
+  return (
+    <section className="access-workspace" aria-labelledby="access-title">
+      <div className="access-heading">
+        <div>
+          <p className="eyebrow">Entitlements</p>
+          <h2 id="access-title">User access</h2>
+          <p>Activate a time-limited trial or the full version for a specific iPhone without changing App Store purchases.</p>
+        </div>
+        <div className="access-stats" aria-label="Access summary">
+          <span><strong>{formatNumber(activeCount)}</strong> active</span>
+          <span><strong>{formatNumber(trialCount)}</strong> trials</span>
+        </div>
+      </div>
+
+      {notice && <Notice notice={notice} onDismiss={() => setNotice(null)} />}
+
+      <div className="access-layout">
+        <form className="access-form" onSubmit={createAccess}>
+          <div className="form-heading">
+            <h3>Activate a learner</h3>
+            <p>Ask the learner for the Access ID shown on their Premium screen.</p>
+          </div>
+
+          <label className="editor-field field-wide">
+            <span>Learner name or reference</span>
+            <small>For your records only. Avoid unnecessary personal information.</small>
+            <input value={label} onChange={(event) => setLabel(event.target.value)} placeholder="Example: Integration class, learner 12" maxLength={120} required />
+          </label>
+
+          <label className="editor-field field-wide">
+            <span>Access ID</span>
+            <small>The random ID from the learner&apos;s iPhone.</small>
+            <input className="access-id-input" value={accessId} onChange={(event) => setAccessId(event.target.value.toUpperCase())} placeholder="DC-1234-ABCD-5678-EF90" autoCapitalize="characters" autoCorrect="off" required />
+          </label>
+
+          <fieldset className="access-type-field">
+            <legend>Access type</legend>
+            <div className="access-type-control">
+              <button type="button" className={accessLevel === "trial" ? "selected" : ""} onClick={() => setAccessLevel("trial")}>
+                <strong>Trial</strong><small>Ends automatically</small>
+              </button>
+              <button type="button" className={accessLevel === "full" ? "selected" : ""} onClick={() => setAccessLevel("full")}>
+                <strong>Full</strong><small>Active until removed</small>
+              </button>
+            </div>
+          </fieldset>
+
+          {accessLevel === "trial" && (
+            <label className="editor-field field-wide">
+              <span>Trial length</span>
+              <select value={trialDays} onChange={(event) => setTrialDays(Number(event.target.value))}>
+                <option value={7}>7 days</option>
+                <option value={14}>14 days</option>
+                <option value={30}>30 days</option>
+                <option value={90}>90 days</option>
+              </select>
+            </label>
+          )}
+
+          <button className="primary-button" type="submit" disabled={busyId === "new" || !label.trim() || !accessId.trim()}>
+            {busyId === "new" ? "Activating..." : `Activate ${accessLevel === "full" ? "full version" : "trial"}`}
+          </button>
+          <p className="privacy-copy">Access IDs are hashed before storage. The app does not send names, email addresses, study history, or speech recordings.</p>
+        </form>
+
+        <div className="access-list-panel">
+          <div className="form-heading">
+            <h3>Managed learners</h3>
+            <p>Trials expire automatically. Full access can be paused or removed at any time.</p>
+          </div>
+
+          {isLoading ? (
+            <div className="collection-loading compact"><span className="loading-pulse" />Loading access...</div>
+          ) : entitlements.length === 0 ? (
+            <div className="empty-state compact"><h3>No managed access yet</h3><p>Activate the first learner with the form.</p></div>
+          ) : (
+            <div className="entitlement-list">
+              {entitlements.map((item) => {
+                const isBusy = busyId === item.subjectHash;
+                return (
+                  <article className="entitlement-row" key={item.subjectHash}>
+                    <div className="entitlement-main">
+                      <div className="entitlement-title">
+                        <strong>{item.label}</strong>
+                        <span className={`access-badge ${item.status}`}>{item.status}</span>
+                      </div>
+                      <div className="entitlement-meta">
+                        <code>••••-{item.accessSuffix}</code>
+                        <span>{item.accessLevel === "full" ? "Full version" : `Trial until ${formatDateOnly(item.expiresAt)}`}</span>
+                      </div>
+                    </div>
+                    <div className="entitlement-actions">
+                      {item.accessLevel === "trial" ? (
+                        <>
+                          <button onClick={() => updateAccess(item, "extend")} disabled={isBusy}>Add 30 days</button>
+                          <button onClick={() => updateAccess(item, "full")} disabled={isBusy}>Make full</button>
+                        </>
+                      ) : (
+                        <button onClick={() => updateAccess(item, "trial")} disabled={isBusy}>Change to 14-day trial</button>
+                      )}
+                      <button onClick={() => updateAccess(item, "toggle")} disabled={isBusy}>{item.enabled ? "Pause" : "Reactivate"}</button>
+                      <button className="danger-text" onClick={() => deleteAccess(item)} disabled={isBusy}>Remove</button>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+async function saveAccess(body: Record<string, unknown>) {
+  const response = await fetch("/api/admin/entitlements", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const payload = (await response.json()) as { error?: string };
+  if (!response.ok) throw new Error(payload.error ?? "Access could not be saved.");
 }
 
 function ContentEditor({
@@ -767,5 +1004,12 @@ function formatNumber(value: number) {
 function formatDate(value: number) {
   return new Intl.DateTimeFormat("de-DE", {
     day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false,
+  }).format(new Date(value));
+}
+
+function formatDateOnly(value: number | null) {
+  if (!value) return "not set";
+  return new Intl.DateTimeFormat("de-DE", {
+    day: "2-digit", month: "2-digit", year: "numeric",
   }).format(new Date(value));
 }

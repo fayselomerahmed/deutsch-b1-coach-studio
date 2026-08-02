@@ -48,12 +48,15 @@ test("includes the app curriculum as the safe editing baseline", async () => {
 });
 
 test("keeps learner reads public and owner writes authenticated", async () => {
-  const [publicRoute, writeRoute, activationRoute, schema, validator] = await Promise.all([
+  const [publicRoute, writeRoute, activationRoute, schema, validator, publicAccessRoute, adminAccessRoute, entitlementStore] = await Promise.all([
     readFile(new URL("app/rest/v1/app_content/route.ts", root), "utf8"),
     readFile(new URL("app/api/admin/content/route.ts", root), "utf8"),
     readFile(new URL("app/api/admin/activate/route.ts", root), "utf8"),
     readFile(new URL("db/schema.ts", root), "utf8"),
     readFile(new URL("lib/content-catalog.ts", root), "utf8"),
+    readFile(new URL("app/api/access/entitlement/route.ts", root), "utf8"),
+    readFile(new URL("app/api/admin/entitlements/route.ts", root), "utf8"),
+    readFile(new URL("db/entitlement-store.ts", root), "utf8"),
   ]);
 
   assert.match(publicRoute, /export async function GET/);
@@ -64,4 +67,22 @@ test("keeps learner reads public and owner writes authenticated", async () => {
   assert.match(schema, /contentVersions/);
   assert.match(validator, /validateContentCollection/);
   assert.match(validator, /correct answer must exactly match one answer choice/i);
+  assert.doesNotMatch(publicAccessRoute, /getChatGPTUser|verifyOwner/);
+  assert.match(publicAccessRoute, /export async function POST/);
+  assert.doesNotMatch(publicAccessRoute, /searchParams|get\("access_id"\)/);
+  assert.match(adminAccessRoute, /verifyOwner/);
+  assert.match(entitlementStore, /SHA-256/);
+  assert.match(entitlementStore, /access_entitlements/);
+});
+
+test("ships guided trial and full-access administration", async () => {
+  const [portal, migration] = await Promise.all([
+    readFile(new URL("app/admin-portal.tsx", root), "utf8"),
+    readFile(new URL("drizzle/0001_happy_jackpot.sql", root), "utf8"),
+  ]);
+
+  assert.match(portal, /full version/);
+  assert.match(portal, /Trial/);
+  assert.match(portal, /Access IDs are hashed before storage/);
+  assert.match(migration, /access_entitlements/);
 });

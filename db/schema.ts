@@ -29,3 +29,15 @@ export const contentVersions = sqliteTable(
   },
   (table) => [primaryKey({ columns: [table.fileName, table.version] })],
 );
+
+export const accessEntitlements = sqliteTable("access_entitlements", {
+  subjectHash: text("subject_hash").primaryKey(),
+  accessSuffix: text("access_suffix").notNull(),
+  label: text("label").notNull(),
+  accessLevel: text("access_level").notNull(),
+  expiresAt: integer("expires_at"),
+  enabled: integer("enabled", { mode: "boolean" }).notNull().default(true),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
+  updatedBy: text("updated_by").notNull(),
+});
