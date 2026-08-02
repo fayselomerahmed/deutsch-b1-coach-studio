@@ -1,0 +1,267 @@
+[
+  {
+    "id": "a1-l00-alphabet",
+    "level": "A1",
+    "order": 0,
+    "title": "Das Alphabet und die Laute",
+    "scenario": "You are giving your name at a language school and need to spell it clearly. You will hear German letter names, connect each letter to a real word, and practice the sounds that are often different from English.",
+    "vocabularyIds": ["a1-v-059", "a1-v-047", "a1-v-111", "a1-v-112"],
+    "grammarTopicId": "a1-alphabet-pronunciation",
+    "guidedPractice": [
+      {
+        "type": "multipleChoice",
+        "prompt": "Which letter is called Jott?",
+        "choices": ["J", "G", "Y"],
+        "answer": "J",
+        "explanation": "The German letter name Jott belongs to J."
+      },
+      {
+        "type": "multipleChoice",
+        "prompt": "Which letter begins Wasser?",
+        "choices": ["W", "V", "U"],
+        "answer": "W",
+        "explanation": "Wasser begins with W, pronounced with a /v/ sound."
+      },
+      {
+        "type": "multipleChoice",
+        "prompt": "Which letter begins Zeit?",
+        "choices": ["Z", "S", "C"],
+        "answer": "Z",
+        "explanation": "German Z makes the /ts/ sound at the start of Zeit."
+      },
+      {
+        "type": "fillBlank",
+        "prompt": "Complete: A wie ___.",
+        "choices": ["Apfel", "Öl", "Uhr"],
+        "answer": "Apfel",
+        "explanation": "A wie Apfel is a standard spelling model."
+      },
+      {
+        "type": "multipleChoice",
+        "prompt": "Which word contains Ü?",
+        "choices": ["Tür", "Tor", "Tier"],
+        "answer": "Tür",
+        "explanation": "Tür contains the rounded front vowel Ü."
+      },
+      {
+        "type": "multipleChoice",
+        "prompt": "Which character is called Eszett?",
+        "choices": ["ß", "B", "S"],
+        "answer": "ß",
+        "explanation": "ß is called Eszett or scharfes S."
+      },
+      {
+        "type": "fillBlank",
+        "prompt": "Spell Name: N – A – ___ – E.",
+        "choices": ["M", "N", "L"],
+        "answer": "M",
+        "explanation": "Name is spelled N – A – M – E."
+      }
+    ],
+    "listening": {
+      "script": "Guten Tag. Wie ist Ihr Name? Mein Name ist Amira. Können Sie das bitte buchstabieren? Ja: A – M – I – R – A. Vielen Dank.",
+      "questions": [
+        {
+          "prompt": "What name does the speaker spell?",
+          "answer": "Amira",
+          "explanation": "The speaker says A – M – I – R – A."
+        },
+        {
+          "prompt": "Why does the speaker say individual letters?",
+          "answer": "to spell the name clearly",
+          "explanation": "Buchstabieren means to spell a word letter by letter."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Say your name, then spell it slowly with German letter names.",
+      "expectedAnswer": "Mein Name ist Amira. A – M – I – R – A.",
+      "requiredPhrases": ["Mein Name ist", "A", "M"],
+      "grammarMarkers": ["Mein Name ist"]
+    },
+    "writing": {
+      "prompt": "Write your first name and separate its letters with dashes.",
+      "checklist": [
+        "I wrote every letter in the correct order.",
+        "I checked any Ä, Ö, Ü, or ß carefully.",
+        "I can say the German name of each letter I wrote."
+      ]
+    },
+    "recap": [
+      "You can recognize and say the German letter names.",
+      "You connected difficult letters such as J, V, W, and Z to real German sounds.",
+      "You practiced Ä, Ö, Ü, and ß.",
+      "You can spell your name clearly in a real-life situation."
+    ],
+    "xp": 20
+  },
+  {
+    "id": "a1-l01-introductions",
+    "level": "A1",
+    "order": 1,
+    "title": "Sich vorstellen",
+    "scenario": "You have just arrived at a German course. You need to greet people, say your name, where you come from, where you live, and ask simple questions politely.",
+    "vocabularyIds": ["a1-v-021", "a1-v-022", "a1-v-001", "a1-v-023"],
+    "grammarTopicId": "a1-pronouns",
+    "guidedPractice": [
+      {
+        "type": "multipleChoice",
+        "prompt": "Choose the correct pronoun: ___ heiße Maria.",
+        "choices": ["Ich", "Du", "Wir"],
+        "answer": "Ich",
+        "explanation": "Ich means I and is used when you introduce yourself."
+      },
+      {
+        "type": "fillBlank",
+        "prompt": "Fill in: Wo ___ du?",
+        "choices": ["wohnst", "wohnen", "wohnt"],
+        "answer": "wohnst",
+        "explanation": "Du takes the -st verb ending."
+      },
+      {
+        "type": "sentenceReorder",
+        "prompt": "Build the sentence: aus Syrien / komme / ich",
+        "choices": ["Ich komme aus Syrien.", "Aus Syrien ich komme.", "Komme ich aus Syrien."],
+        "answer": "Ich komme aus Syrien.",
+        "explanation": "In a statement, the conjugated verb is in second position."
+      },
+      {
+        "type": "multipleChoice",
+        "prompt": "Formal question for a new teacher:",
+        "choices": ["Wie heißen Sie?", "Wie heißt du?", "Wie bist du?"],
+        "answer": "Wie heißen Sie?",
+        "explanation": "Use Sie in formal situations."
+      },
+      {
+        "type": "fillBlank",
+        "prompt": "Fill in: Wir ___ Deutsch.",
+        "choices": ["lernen", "lernst", "lernt"],
+        "answer": "lernen",
+        "explanation": "Wir uses the infinitive-like -en form."
+      },
+      {
+        "type": "sentenceReorder",
+        "prompt": "Build the question: du / wo / wohnst",
+        "choices": ["Wo wohnst du?", "Wo du wohnst?", "Wohnst wo du?"],
+        "answer": "Wo wohnst du?",
+        "explanation": "W-question word first, verb second, subject third."
+      }
+    ],
+    "listening": {
+      "script": "Hallo, ich heiße Samir. Ich komme aus Marokko und wohne jetzt in Berlin. Ich lerne Deutsch, weil ich hier arbeiten möchte.",
+      "questions": [
+        {
+          "prompt": "Where does Samir live now?",
+          "answer": "in Berlin",
+          "explanation": "He says: ich wohne jetzt in Berlin."
+        },
+        {
+          "prompt": "Why is he learning German?",
+          "answer": "because he wants to work here",
+          "explanation": "He says: weil ich hier arbeiten möchte."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Introduce yourself in three sentences: name, origin, current city.",
+      "expectedAnswer": "Ich heiße Samir. Ich komme aus Marokko. Ich wohne in Berlin.",
+      "requiredPhrases": ["ich heiße", "ich komme aus", "ich wohne in"],
+      "grammarMarkers": ["ich", "komme", "wohne"]
+    },
+    "writing": {
+      "prompt": "Write 1-3 German sentences introducing yourself to a course partner.",
+      "checklist": [
+        "I used Ich correctly.",
+        "I wrote my city with in.",
+        "My conjugated verb is in second position."
+      ]
+    },
+    "recap": [
+      "You can introduce yourself with ich heiße, ich komme aus, and ich wohne in.",
+      "You practiced formal and informal questions.",
+      "Four new words are ready for spaced repetition."
+    ],
+    "xp": 20
+  },
+  {
+    "id": "a1-l02-cafe",
+    "level": "A1",
+    "order": 2,
+    "title": "Im Café bestellen",
+    "scenario": "You are in a café and want to order politely, ask for the bill, and understand simple prices or service phrases.",
+    "vocabularyIds": ["a1-v-010", "a1-v-009", "a1-v-025"],
+    "grammarTopicId": "a1-accusative",
+    "guidedPractice": [
+      {
+        "type": "multipleChoice",
+        "prompt": "Ich möchte ___ Kaffee.",
+        "choices": ["einen", "eine", "ein"],
+        "answer": "einen",
+        "explanation": "Kaffee is masculine and becomes einen in the accusative."
+      },
+      {
+        "type": "fillBlank",
+        "prompt": "Fill in: Ich ___ bezahlen.",
+        "choices": ["möchte", "möchten", "möchtest"],
+        "answer": "möchte",
+        "explanation": "Ich möchte is the polite A1 phrase for I would like."
+      },
+      {
+        "type": "multipleChoice",
+        "prompt": "Best polite order:",
+        "choices": ["Ich möchte einen Kaffee, bitte.", "Gib Kaffee.", "Kaffee jetzt."],
+        "answer": "Ich möchte einen Kaffee, bitte.",
+        "explanation": "This is natural and polite."
+      },
+      {
+        "type": "sentenceReorder",
+        "prompt": "Build: bitte / die Rechnung / ich möchte",
+        "choices": ["Ich möchte bitte die Rechnung.", "Bitte ich möchte die Rechnung.", "Die Rechnung ich möchte bitte."],
+        "answer": "Ich möchte bitte die Rechnung.",
+        "explanation": "Ich first, möchte second."
+      },
+      {
+        "type": "fillBlank",
+        "prompt": "Fill in: Haben Sie ___ Brot?",
+        "choices": ["ein", "einen", "eine"],
+        "answer": "ein",
+        "explanation": "Brot is neuter, so ein stays ein."
+      }
+    ],
+    "listening": {
+      "script": "Guten Morgen. Ich möchte einen Kaffee und ein Brot, bitte. Das macht vier Euro zwanzig.",
+      "questions": [
+        {
+          "prompt": "What does the person order?",
+          "answer": "a coffee and bread",
+          "explanation": "They say: einen Kaffee und ein Brot."
+        },
+        {
+          "prompt": "How much is it?",
+          "answer": "4.20 euros",
+          "explanation": "Das macht vier Euro zwanzig."
+        }
+      ]
+    },
+    "speaking": {
+      "prompt": "Order a coffee and ask to pay.",
+      "expectedAnswer": "Ich möchte einen Kaffee, bitte. Ich möchte bezahlen.",
+      "requiredPhrases": ["ich möchte", "einen Kaffee", "bezahlen"],
+      "grammarMarkers": ["möchte", "einen"]
+    },
+    "writing": {
+      "prompt": "Write a short café order with bitte.",
+      "checklist": [
+        "I used möchte for politeness.",
+        "I used einen Kaffee.",
+        "I included bitte."
+      ]
+    },
+    "recap": [
+      "You ordered politely with ich möchte.",
+      "You practiced masculine accusative with einen Kaffee.",
+      "Café words were added to review."
+    ],
+    "xp": 20
+  }
+]

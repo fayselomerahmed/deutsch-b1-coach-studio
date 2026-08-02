@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Deutsch Coach Content Studio",
-  description: "Secure live curriculum publishing for Deutsch B1 Coach.",
+  title: "Deutsch Coach Curriculum Studio",
+  description: "Add, edit, organize, and publish live German curriculum to the Deutsch Coach iPhone app.",
   icons: {
     icon: "/app-icon.png",
     shortcut: "/app-icon.png",
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="ltr">
+    <html lang="en" dir="ltr" className="hyphens-auto">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

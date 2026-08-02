@@ -1,0 +1,627 @@
+[
+  {
+    "id": "a1-introduce",
+    "level": "A1",
+    "order": 1,
+    "title": "Meet someone new",
+    "setting": "First day in a German course",
+    "goal": "Introduce yourself and ask simple personal questions.",
+    "partnerRole": "Course partner",
+    "icon": "person.2.fill",
+    "canDo": ["Say your name and home city", "Explain why you learn German", "Ask one polite question"],
+    "phrases": [
+      {"german": "Ich heiße ...", "english": "My name is ..."},
+      {"german": "Ich komme aus ...", "english": "I come from ..."},
+      {"german": "Ich lerne Deutsch für ...", "english": "I learn German for ..."},
+      {"german": "Und wie heißt du?", "english": "And what is your name?"}
+    ],
+    "turns": [
+      {"partnerCue": "Hallo! Ich heiße Lena. Wie heißt du?", "cueTranslation": "Hello! My name is Lena. What is your name?", "modelResponse": "Hallo Lena! Ich heiße Samira.", "responseTranslation": "Hello Lena! My name is Samira.", "requiredPhrases": ["ich heiße"], "grammarMarkers": ["ich"]},
+      {"partnerCue": "Wo wohnst du?", "cueTranslation": "Where do you live?", "modelResponse": "Ich wohne in Hamburg.", "responseTranslation": "I live in Hamburg.", "requiredPhrases": ["ich wohne"], "grammarMarkers": ["in"]},
+      {"partnerCue": "Warum lernst du Deutsch?", "cueTranslation": "Why are you learning German?", "modelResponse": "Ich lerne Deutsch für meine Arbeit. Und du?", "responseTranslation": "I learn German for my work. And you?", "requiredPhrases": ["ich lerne Deutsch"], "grammarMarkers": ["für"]},
+      {"partnerCue": "Was machst du gern am Wochenende?", "cueTranslation": "What do you like doing at the weekend?", "modelResponse": "Am Wochenende koche ich gern und treffe meine Freunde.", "responseTranslation": "At the weekend I like cooking and meeting my friends.", "requiredPhrases": ["am Wochenende", "gern"], "grammarMarkers": ["und"]}
+    ],
+    "writingPrompt": "Schreiben Sie Ihrem neuen Kurspartner eine kurze Nachricht. Nennen Sie Ihren Namen und Wohnort und schlagen Sie ein Treffen vor.",
+    "writingChecklist": ["I introduced myself.", "I included my city.", "I suggested a time or place.", "I used a greeting and closing."]
+  },
+  {
+    "id": "a1-cafe",
+    "level": "A1",
+    "order": 2,
+    "title": "Order at a café",
+    "setting": "A busy café",
+    "goal": "Order food and drink, ask the price, and pay politely.",
+    "partnerRole": "Server",
+    "icon": "cup.and.saucer.fill",
+    "canDo": ["Order with ich möchte", "Ask for the price", "Request the bill"],
+    "phrases": [
+      {"german": "Ich möchte bitte ...", "english": "I would like ... please."},
+      {"german": "Was kostet das?", "english": "What does that cost?"},
+      {"german": "Sonst noch etwas?", "english": "Anything else?"},
+      {"german": "Die Rechnung, bitte.", "english": "The bill, please."}
+    ],
+    "turns": [
+      {"partnerCue": "Guten Tag. Was möchten Sie?", "cueTranslation": "Good day. What would you like?", "modelResponse": "Ich möchte bitte einen Kaffee und ein Stück Kuchen.", "responseTranslation": "I would like a coffee and a piece of cake, please.", "requiredPhrases": ["ich möchte bitte"], "grammarMarkers": ["einen"]},
+      {"partnerCue": "Gern. Sonst noch etwas?", "cueTranslation": "Certainly. Anything else?", "modelResponse": "Nein, danke. Was kostet das zusammen?", "responseTranslation": "No, thank you. What does that cost altogether?", "requiredPhrases": ["was kostet das"], "grammarMarkers": ["das"]},
+      {"partnerCue": "Das macht acht Euro fünfzig.", "cueTranslation": "That comes to eight euros fifty.", "modelResponse": "Danke. Ich möchte mit Karte bezahlen.", "responseTranslation": "Thank you. I would like to pay by card.", "requiredPhrases": ["mit Karte bezahlen"], "grammarMarkers": ["möchte"]},
+      {"partnerCue": "Natürlich. Möchten Sie einen Kassenbon?", "cueTranslation": "Of course. Would you like a receipt?", "modelResponse": "Ja, bitte. Vielen Dank und auf Wiedersehen.", "responseTranslation": "Yes, please. Thank you very much and goodbye.", "requiredPhrases": ["ja, bitte", "auf Wiedersehen"], "grammarMarkers": ["und"]}
+    ],
+    "writingPrompt": "Schreiben Sie eine kurze Bestellung für ein Café: zwei Getränke, etwas zu essen und eine höfliche Bitte.",
+    "writingChecklist": ["I ordered two drinks.", "I ordered food.", "I used bitte and danke.", "I used correct accusative articles where needed."]
+  },
+  {
+    "id": "a1-shopping",
+    "level": "A1",
+    "order": 3,
+    "title": "Buy clothes",
+    "setting": "A clothing shop",
+    "goal": "Ask for a size and color, try something on, and decide.",
+    "partnerRole": "Shop assistant",
+    "icon": "tshirt.fill",
+    "canDo": ["Ask for a product", "State size and color", "Say whether it fits"],
+    "phrases": [
+      {"german": "Haben Sie das in Größe M?", "english": "Do you have that in size M?"},
+      {"german": "Kann ich das anprobieren?", "english": "Can I try that on?"},
+      {"german": "Das ist zu groß.", "english": "That is too big."},
+      {"german": "Ich nehme es.", "english": "I will take it."}
+    ],
+    "turns": [
+      {"partnerCue": "Kann ich Ihnen helfen?", "cueTranslation": "Can I help you?", "modelResponse": "Ja, ich suche eine blaue Jacke.", "responseTranslation": "Yes, I am looking for a blue jacket.", "requiredPhrases": ["ich suche"], "grammarMarkers": ["eine"]},
+      {"partnerCue": "Welche Größe brauchen Sie?", "cueTranslation": "Which size do you need?", "modelResponse": "Ich brauche Größe M. Kann ich die Jacke anprobieren?", "responseTranslation": "I need size M. Can I try the jacket on?", "requiredPhrases": ["ich brauche", "anprobieren"], "grammarMarkers": ["kann"]},
+      {"partnerCue": "Und, passt die Jacke?", "cueTranslation": "And, does the jacket fit?", "modelResponse": "Ja, sie passt gut. Ich nehme sie.", "responseTranslation": "Yes, it fits well. I will take it.", "requiredPhrases": ["sie passt", "ich nehme"], "grammarMarkers": ["sie"]},
+      {"partnerCue": "Möchten Sie bar oder mit Karte bezahlen?", "cueTranslation": "Would you like to pay in cash or by card?", "modelResponse": "Ich bezahle mit Karte. Kann ich die Jacke umtauschen?", "responseTranslation": "I will pay by card. Can I exchange the jacket?", "requiredPhrases": ["mit Karte", "umtauschen"], "grammarMarkers": ["kann"]}
+    ],
+    "writingPrompt": "Schreiben Sie eine kurze Frage an ein Geschäft. Fragen Sie nach einem Kleidungsstück, einer Farbe, einer Größe und dem Preis.",
+    "writingChecklist": ["I named the item.", "I included color and size.", "I asked the price.", "I used a polite greeting."]
+  },
+  {
+    "id": "a1-supermarket",
+    "level": "A1",
+    "order": 4,
+    "title": "Shop at a supermarket",
+    "setting": "Supermarket and checkout",
+    "goal": "Find a product, ask the price, and complete checkout politely.",
+    "partnerRole": "Shop employee",
+    "icon": "cart.fill",
+    "canDo": ["Ask where a product is", "Understand a simple location", "Pay and answer checkout questions"],
+    "phrases": [
+      {"german": "Wo finde ich ...?", "english": "Where can I find ...?"},
+      {"german": "Wie viel kostet das?", "english": "How much does that cost?"},
+      {"german": "Ich brauche eine Tüte, bitte.", "english": "I need a bag, please."},
+      {"german": "Ich bezahle mit Karte.", "english": "I am paying by card."}
+    ],
+    "turns": [
+      {"partnerCue": "Guten Tag. Suchen Sie etwas?", "cueTranslation": "Good day. Are you looking for something?", "modelResponse": "Ja, wo finde ich bitte die Milch?", "responseTranslation": "Yes, where can I find the milk, please?", "requiredPhrases": ["wo finde ich", "Milch"], "grammarMarkers": ["die"]},
+      {"partnerCue": "Die Milch ist hinten links neben dem Käse.", "cueTranslation": "The milk is at the back on the left beside the cheese.", "modelResponse": "Danke. Und wie viel kostet diese Milch?", "responseTranslation": "Thank you. And how much does this milk cost?", "requiredPhrases": ["wie viel kostet", "Milch"], "grammarMarkers": ["diese"]},
+      {"partnerCue": "Sie kostet einen Euro neunundvierzig. Brauchen Sie noch etwas?", "cueTranslation": "It costs one euro forty-nine. Do you need anything else?", "modelResponse": "Nein, danke. Ich brauche nur noch eine Tüte.", "responseTranslation": "No, thank you. I only need a bag now.", "requiredPhrases": ["nein, danke", "eine Tüte"], "grammarMarkers": ["eine"]},
+      {"partnerCue": "Das macht zwölf Euro zwanzig. Wie möchten Sie bezahlen?", "cueTranslation": "That comes to twelve euros twenty. How would you like to pay?", "modelResponse": "Ich bezahle mit Karte. Vielen Dank.", "responseTranslation": "I am paying by card. Thank you very much.", "requiredPhrases": ["mit Karte", "vielen Dank"], "grammarMarkers": ["mit"]}
+    ],
+    "writingPrompt": "Schreiben Sie eine Einkaufsliste und eine kurze Nachricht. Nennen Sie vier Produkte, eine Menge und eine Frage zu einem fehlenden Produkt.",
+    "writingChecklist": ["I listed four products.", "I included one quantity.", "I asked where a product is.", "I used a clear and polite sentence."]
+  },
+  {
+    "id": "a1-directions",
+    "level": "A1",
+    "order": 5,
+    "title": "Find your way",
+    "setting": "Near a train station",
+    "goal": "Ask for directions and confirm the route.",
+    "partnerRole": "Passer-by",
+    "icon": "map.fill",
+    "canDo": ["Ask where a place is", "Understand left, right, and straight ahead", "Confirm travel time"],
+    "phrases": [
+      {"german": "Entschuldigung, wo ist ...?", "english": "Excuse me, where is ...?"},
+      {"german": "Gehen Sie geradeaus.", "english": "Go straight ahead."},
+      {"german": "Dann links.", "english": "Then left."},
+      {"german": "Wie lange dauert das?", "english": "How long does that take?"}
+    ],
+    "turns": [
+      {"partnerCue": "Guten Tag. Kann ich Ihnen helfen?", "cueTranslation": "Good day. Can I help you?", "modelResponse": "Ja, danke. Wo ist die nächste Apotheke?", "responseTranslation": "Yes, thank you. Where is the nearest pharmacy?", "requiredPhrases": ["wo ist", "Apotheke"], "grammarMarkers": ["die"]},
+      {"partnerCue": "Gehen Sie geradeaus und dann an der Ampel links.", "cueTranslation": "Go straight ahead and then left at the traffic light.", "modelResponse": "Also geradeaus und an der Ampel links?", "responseTranslation": "So straight ahead and left at the traffic light?", "requiredPhrases": ["geradeaus", "links"], "grammarMarkers": ["und"]},
+      {"partnerCue": "Genau. Zu Fuß sind es etwa fünf Minuten.", "cueTranslation": "Exactly. It is about five minutes on foot.", "modelResponse": "Ist die Apotheke neben dem Supermarkt?", "responseTranslation": "Is the pharmacy beside the supermarket?", "requiredPhrases": ["Apotheke", "neben"], "grammarMarkers": ["dem"]},
+      {"partnerCue": "Ja, genau. Sie sehen dort ein grünes Schild.", "cueTranslation": "Yes, exactly. You will see a green sign there.", "modelResponse": "Super, vielen Dank für Ihre Hilfe!", "responseTranslation": "Great, many thanks for your help!", "requiredPhrases": ["vielen Dank", "Ihre Hilfe"], "grammarMarkers": ["für"]}
+    ],
+    "writingPrompt": "Beschreiben Sie einem Freund den Weg vom Bahnhof zu Ihrer Wohnung. Verwenden Sie geradeaus, links oder rechts und zwei Orte.",
+    "writingChecklist": ["I named the starting point and destination.", "I used direction words.", "I included two landmarks.", "I kept the steps in order."]
+  },
+  {
+    "id": "a1-doctor",
+    "level": "A1",
+    "order": 6,
+    "title": "Make a doctor appointment",
+    "setting": "Phone call to a medical practice",
+    "goal": "State a simple health problem and arrange an appointment.",
+    "partnerRole": "Receptionist",
+    "icon": "cross.case.fill",
+    "canDo": ["Say what hurts", "Ask for an appointment", "Confirm a date and time"],
+    "phrases": [
+      {"german": "Ich brauche einen Termin.", "english": "I need an appointment."},
+      {"german": "Ich habe starke Schmerzen.", "english": "I have severe pain."},
+      {"german": "Passt es am Dienstag?", "english": "Does Tuesday work?"},
+      {"german": "Um wie viel Uhr?", "english": "At what time?"}
+    ],
+    "turns": [
+      {"partnerCue": "Praxis Dr. Weber, guten Tag. Was kann ich für Sie tun?", "cueTranslation": "Dr Weber's practice, good day. What can I do for you?", "modelResponse": "Guten Tag. Ich brauche bitte einen Termin.", "responseTranslation": "Good day. I need an appointment, please.", "requiredPhrases": ["ich brauche", "Termin"], "grammarMarkers": ["einen"]},
+      {"partnerCue": "Welche Beschwerden haben Sie?", "cueTranslation": "What symptoms do you have?", "modelResponse": "Ich habe seit gestern starke Halsschmerzen.", "responseTranslation": "I have had a severe sore throat since yesterday.", "requiredPhrases": ["ich habe", "Schmerzen"], "grammarMarkers": ["seit"]},
+      {"partnerCue": "Können Sie morgen um zehn Uhr kommen?", "cueTranslation": "Can you come tomorrow at ten?", "modelResponse": "Ja, das passt. Vielen Dank.", "responseTranslation": "Yes, that works. Many thanks.", "requiredPhrases": ["das passt", "vielen Dank"], "grammarMarkers": ["ja"]},
+      {"partnerCue": "Wie ist Ihr Name und Ihre Telefonnummer?", "cueTranslation": "What is your name and telephone number?", "modelResponse": "Mein Name ist Amir Haddad. Meine Telefonnummer ist null eins sieben sechs, vier fünf drei zwei eins.", "responseTranslation": "My name is Amir Haddad. My telephone number is 0176 45321.", "requiredPhrases": ["mein Name ist", "Telefonnummer"], "grammarMarkers": ["meine"]}
+    ],
+    "writingPrompt": "Schreiben Sie der Arztpraxis eine kurze Nachricht. Nennen Sie Ihre Beschwerden und bitten Sie um einen Termin.",
+    "writingChecklist": ["I described the health problem.", "I said since when it exists.", "I requested an appointment.", "I included my name and contact details."]
+  },
+  {
+    "id": "a2-apartment",
+    "level": "A2",
+    "order": 1,
+    "title": "View an apartment",
+    "setting": "Apartment viewing",
+    "goal": "Ask about costs, conditions, and the next steps.",
+    "partnerRole": "Landlord",
+    "icon": "house.fill",
+    "canDo": ["Ask about rent and additional costs", "Clarify rules and equipment", "Express interest"],
+    "phrases": [
+      {"german": "Wie hoch sind die Nebenkosten?", "english": "How high are the additional costs?"},
+      {"german": "Ist die Heizung in der Miete enthalten?", "english": "Is heating included in the rent?"},
+      {"german": "Ab wann ist die Wohnung frei?", "english": "From when is the apartment available?"},
+      {"german": "Ich interessiere mich für die Wohnung.", "english": "I am interested in the apartment."}
+    ],
+    "turns": [
+      {"partnerCue": "Die Wohnung kostet achthundert Euro kalt.", "cueTranslation": "The apartment costs eight hundred euros excluding utilities.", "modelResponse": "Wie hoch sind die Nebenkosten, und ist die Heizung darin enthalten?", "responseTranslation": "How high are the additional costs, and is heating included?", "requiredPhrases": ["wie hoch", "Nebenkosten"], "grammarMarkers": ["und"]},
+      {"partnerCue": "Die Nebenkosten liegen bei zweihundert Euro. Haustiere sind erlaubt.", "cueTranslation": "Additional costs are two hundred euros. Pets are allowed.", "modelResponse": "Gut. Ab wann ist die Wohnung frei?", "responseTranslation": "Good. From when is the apartment available?", "requiredPhrases": ["ab wann", "Wohnung frei"], "grammarMarkers": ["ist"]},
+      {"partnerCue": "Sie können zum ersten Oktober einziehen.", "cueTranslation": "You can move in on the first of October.", "modelResponse": "Der Termin passt. Ich interessiere mich sehr für die Wohnung.", "responseTranslation": "The date works. I am very interested in the apartment.", "requiredPhrases": ["ich interessiere mich", "Wohnung"], "grammarMarkers": ["für"]},
+      {"partnerCue": "Dann schicken Sie mir bitte Ihre Unterlagen per E-Mail.", "cueTranslation": "Then please send me your documents by email.", "modelResponse": "Gern. Welche Unterlagen benötigen Sie genau?", "responseTranslation": "Gladly. Which documents exactly do you require?", "requiredPhrases": ["welche Unterlagen", "benötigen Sie"], "grammarMarkers": ["Sie"]}
+    ],
+    "writingPrompt": "Schreiben Sie nach einer Wohnungsbesichtigung an den Vermieter. Bestätigen Sie Ihr Interesse und fragen Sie nach Mietvertrag, Kaution und Einzugstermin.",
+    "writingChecklist": ["I referred to the viewing.", "I confirmed my interest.", "I asked about the contract and deposit.", "I asked about the move-in date."]
+  },
+  {
+    "id": "a2-work",
+    "level": "A2",
+    "order": 2,
+    "title": "Change a work shift",
+    "setting": "Conversation with a supervisor",
+    "goal": "Explain a scheduling problem and agree on a solution.",
+    "partnerRole": "Supervisor",
+    "icon": "briefcase.fill",
+    "canDo": ["Explain why you cannot work", "Suggest an alternative", "Confirm the agreement"],
+    "phrases": [
+      {"german": "Ich kann am Freitag leider nicht arbeiten.", "english": "Unfortunately I cannot work on Friday."},
+      {"german": "Könnten wir die Schicht tauschen?", "english": "Could we swap the shift?"},
+      {"german": "Ich könnte stattdessen am Samstag arbeiten.", "english": "I could work on Saturday instead."},
+      {"german": "Vielen Dank für Ihr Verständnis.", "english": "Thank you for your understanding."}
+    ],
+    "turns": [
+      {"partnerCue": "Sie wollten wegen des Dienstplans mit mir sprechen?", "cueTranslation": "You wanted to speak with me about the rota?", "modelResponse": "Ja. Ich kann am Freitag leider nicht arbeiten, weil mein Kind einen Arzttermin hat.", "responseTranslation": "Yes. Unfortunately I cannot work Friday because my child has a doctor appointment.", "requiredPhrases": ["leider nicht arbeiten", "weil"], "grammarMarkers": ["weil", "hat"]},
+      {"partnerCue": "Wann könnten Sie die Schicht nachholen?", "cueTranslation": "When could you make up the shift?", "modelResponse": "Ich könnte stattdessen am Samstag arbeiten.", "responseTranslation": "I could work on Saturday instead.", "requiredPhrases": ["ich könnte", "stattdessen"], "grammarMarkers": ["könnte"]},
+      {"partnerCue": "Gut, dann ändere ich den Dienstplan.", "cueTranslation": "Good, then I will change the rota.", "modelResponse": "Vielen Dank für Ihr Verständnis. Ich bestätige den Tausch per E-Mail.", "responseTranslation": "Thank you for your understanding. I will confirm the swap by email.", "requiredPhrases": ["vielen Dank", "bestätige"], "grammarMarkers": ["für"]},
+      {"partnerCue": "Hat Ihre Kollegin dem Tausch schon zugestimmt?", "cueTranslation": "Has your colleague already agreed to the swap?", "modelResponse": "Ja, sie hat zugestimmt. Ich setze sie in der E-Mail in Kopie.", "responseTranslation": "Yes, she has agreed. I will copy her into the email.", "requiredPhrases": ["hat zugestimmt", "in Kopie"], "grammarMarkers": ["sie"]}
+    ],
+    "writingPrompt": "Schreiben Sie Ihrer Führungskraft. Erklären Sie, warum Sie eine Schicht nicht übernehmen können, und schlagen Sie zwei Alternativen vor.",
+    "writingChecklist": ["I explained the reason.", "I proposed two alternatives.", "I used a polite request.", "I asked for confirmation."]
+  },
+  {
+    "id": "a2-customer-sale",
+    "level": "A2",
+    "order": 3,
+    "title": "Help a customer",
+    "setting": "Sales conversation in an electronics shop",
+    "goal": "Discover what a customer needs, recommend a product, and complete the sale.",
+    "partnerRole": "Customer",
+    "icon": "headphones",
+    "canDo": ["Ask useful questions about a need", "Compare two products clearly", "Explain price, return, and payment"],
+    "phrases": [
+      {"german": "Wofür möchten Sie das Produkt benutzen?", "english": "What would you like to use the product for?"},
+      {"german": "Dieses Modell eignet sich besonders für ...", "english": "This model is particularly suitable for ..."},
+      {"german": "Im Vergleich dazu ist ...", "english": "In comparison, ... is ..."},
+      {"german": "Sie können das Produkt innerhalb von vierzehn Tagen zurückgeben.", "english": "You can return the product within fourteen days."}
+    ],
+    "turns": [
+      {"partnerCue": "Guten Tag. Ich suche Kopfhörer für die Arbeit im Homeoffice.", "cueTranslation": "Good day. I am looking for headphones for working from home.", "modelResponse": "Guten Tag. Sollen die Kopfhörer vor allem bequem sein oder brauchen Sie eine gute Geräuschunterdrückung?", "responseTranslation": "Good day. Should the headphones mainly be comfortable, or do you need good noise cancellation?", "requiredPhrases": ["sollen die Kopfhörer", "brauchen Sie"], "grammarMarkers": ["oder"]},
+      {"partnerCue": "Eine gute Geräuschunterdrückung ist mir wichtig. Mein Budget liegt bei hundert Euro.", "cueTranslation": "Good noise cancellation is important to me. My budget is one hundred euros.", "modelResponse": "Dann empfehle ich dieses Modell. Es kostet neunundachtzig Euro und eignet sich gut für Videokonferenzen.", "responseTranslation": "Then I recommend this model. It costs eighty-nine euros and is well suited to video conferences.", "requiredPhrases": ["empfehle ich", "eignet sich"], "grammarMarkers": ["und"]},
+      {"partnerCue": "Was ist der Unterschied zu dem Modell daneben?", "cueTranslation": "What is the difference compared with the model beside it?", "modelResponse": "Das andere Modell hat einen stärkeren Akku, aber die Geräuschunterdrückung ist schwächer.", "responseTranslation": "The other model has a stronger battery, but the noise cancellation is weaker.", "requiredPhrases": ["das andere Modell", "aber"], "grammarMarkers": ["stärkeren", "schwächer"]},
+      {"partnerCue": "Dann nehme ich Ihre Empfehlung. Kann ich die Kopfhörer zurückgeben, wenn sie nicht passen?", "cueTranslation": "Then I will take your recommendation. Can I return the headphones if they are not suitable?", "modelResponse": "Ja, Sie können sie innerhalb von vierzehn Tagen zurückgeben. Möchten Sie mit Karte bezahlen?", "responseTranslation": "Yes, you can return them within fourteen days. Would you like to pay by card?", "requiredPhrases": ["innerhalb von", "zurückgeben"], "grammarMarkers": ["wenn", "sie"]}
+    ],
+    "writingPrompt": "Schreiben Sie einer Kundin eine kurze Produktempfehlung. Nennen Sie Bedarf, zwei Vorteile, einen Vergleich, Preis und Rückgabemöglichkeit.",
+    "writingChecklist": ["I referred to the customer's need.", "I described two benefits.", "I compared an alternative.", "I included price and return information."]
+  },
+  {
+    "id": "a2-health",
+    "level": "A2",
+    "order": 4,
+    "title": "Describe symptoms",
+    "setting": "Consultation with a doctor",
+    "goal": "Describe symptoms, answer follow-up questions, and understand advice.",
+    "partnerRole": "Doctor",
+    "icon": "stethoscope",
+    "canDo": ["Describe duration and intensity", "Answer health questions", "Confirm treatment instructions"],
+    "phrases": [
+      {"german": "Die Beschwerden haben vor drei Tagen angefangen.", "english": "The symptoms started three days ago."},
+      {"german": "Der Schmerz wird stärker.", "english": "The pain is getting stronger."},
+      {"german": "Ich nehme keine anderen Medikamente.", "english": "I do not take any other medication."},
+      {"german": "Wie oft soll ich das nehmen?", "english": "How often should I take that?"}
+    ],
+    "turns": [
+      {"partnerCue": "Was fehlt Ihnen?", "cueTranslation": "What is wrong?", "modelResponse": "Ich habe seit drei Tagen Husten und Fieber. Nachts wird der Husten stärker.", "responseTranslation": "I have had a cough and fever for three days. The cough gets worse at night.", "requiredPhrases": ["seit drei Tagen", "wird stärker"], "grammarMarkers": ["seit", "und"]},
+      {"partnerCue": "Nehmen Sie andere Medikamente oder haben Sie Allergien?", "cueTranslation": "Do you take other medication or have allergies?", "modelResponse": "Ich nehme keine anderen Medikamente, aber ich habe eine Allergie gegen Penicillin.", "responseTranslation": "I do not take other medication, but I have a penicillin allergy.", "requiredPhrases": ["keine anderen Medikamente", "Allergie"], "grammarMarkers": ["aber"]},
+      {"partnerCue": "Ich verschreibe Ihnen Tabletten. Nehmen Sie morgens und abends eine.", "cueTranslation": "I will prescribe tablets. Take one morning and evening.", "modelResponse": "Wie lange soll ich die Tabletten nehmen?", "responseTranslation": "How long should I take the tablets?", "requiredPhrases": ["wie lange", "Tabletten nehmen"], "grammarMarkers": ["soll"]},
+      {"partnerCue": "Fünf Tage. Trinken Sie außerdem viel Wasser und ruhen Sie sich aus.", "cueTranslation": "For five days. Also drink plenty of water and rest.", "modelResponse": "Verstanden. Wenn das Fieber nicht sinkt, soll ich wiederkommen?", "responseTranslation": "Understood. If the fever does not fall, should I come back?", "requiredPhrases": ["wenn das Fieber", "wiederkommen"], "grammarMarkers": ["wenn", "soll"]}
+    ],
+    "writingPrompt": "Schreiben Sie für einen Arzttermin eine kurze Übersicht: Beschwerden, Beginn, Medikamente, Allergien und zwei Fragen.",
+    "writingChecklist": ["I named the symptoms.", "I said when they started.", "I listed medication or allergies.", "I included two questions."]
+  },
+  {
+    "id": "a2-travel",
+    "level": "A2",
+    "order": 5,
+    "title": "Handle a travel delay",
+    "setting": "Information desk at a station",
+    "goal": "Explain a missed connection and arrange another route.",
+    "partnerRole": "Rail employee",
+    "icon": "tram.fill",
+    "canDo": ["Explain the problem", "Ask about alternatives", "Confirm platform and validity"],
+    "phrases": [
+      {"german": "Wegen der Verspätung habe ich den Anschluss verpasst.", "english": "Because of the delay, I missed the connection."},
+      {"german": "Welche Verbindung kann ich nehmen?", "english": "Which connection can I take?"},
+      {"german": "Gilt meine Fahrkarte noch?", "english": "Is my ticket still valid?"},
+      {"german": "Von welchem Gleis fährt der Zug?", "english": "Which platform does the train leave from?"}
+    ],
+    "turns": [
+      {"partnerCue": "Guten Abend. Was ist passiert?", "cueTranslation": "Good evening. What happened?", "modelResponse": "Mein Zug hatte Verspätung. Deshalb habe ich den Anschluss nach Köln verpasst.", "responseTranslation": "My train was delayed. Therefore I missed the connection to Cologne.", "requiredPhrases": ["Verspätung", "Anschluss verpasst"], "grammarMarkers": ["deshalb"]},
+      {"partnerCue": "Der nächste Zug fährt in vierzig Minuten.", "cueTranslation": "The next train leaves in forty minutes.", "modelResponse": "Von welchem Gleis fährt er, und gilt meine Fahrkarte noch?", "responseTranslation": "Which platform does it leave from, and is my ticket still valid?", "requiredPhrases": ["von welchem Gleis", "Fahrkarte"], "grammarMarkers": ["und"]},
+      {"partnerCue": "Er fährt von Gleis sieben. Ihre Fahrkarte bleibt gültig.", "cueTranslation": "It leaves from platform seven. Your ticket remains valid.", "modelResponse": "Vielen Dank. Muss ich die neue Verbindung irgendwo bestätigen lassen?", "responseTranslation": "Many thanks. Do I need to have the new connection confirmed anywhere?", "requiredPhrases": ["vielen Dank", "bestätigen"], "grammarMarkers": ["muss"]},
+      {"partnerCue": "Nein, die Information auf Ihrem Handy reicht aus.", "cueTranslation": "No, the information on your phone is sufficient.", "modelResponse": "Alles klar. Dann gehe ich jetzt zu Gleis sieben.", "responseTranslation": "All right. Then I will go to platform seven now.", "requiredPhrases": ["alles klar", "Gleis sieben"], "grammarMarkers": ["dann"]}
+    ],
+    "writingPrompt": "Schreiben Sie Ihrer Unterkunft wegen einer Zugverspätung. Erklären Sie die Situation, nennen Sie Ihre neue Ankunftszeit und fragen Sie nach dem späten Check-in.",
+    "writingChecklist": ["I explained the delay.", "I included the new arrival time.", "I asked about late check-in.", "I used a clear subject and closing."]
+  },
+  {
+    "id": "a2-authority",
+    "level": "A2",
+    "order": 6,
+    "title": "Attend an authority appointment",
+    "setting": "Citizens' office",
+    "goal": "State your request, provide documents, and clarify what happens next.",
+    "partnerRole": "Caseworker",
+    "icon": "building.columns.fill",
+    "canDo": ["Explain the purpose of the appointment", "Respond about documents", "Ask about processing time"],
+    "phrases": [
+      {"german": "Ich möchte meinen Wohnsitz anmelden.", "english": "I would like to register my address."},
+      {"german": "Welche Unterlagen brauchen Sie?", "english": "Which documents do you need?"},
+      {"german": "Hier sind mein Ausweis und der Mietvertrag.", "english": "Here are my ID and rental contract."},
+      {"german": "Wie lange dauert die Bearbeitung?", "english": "How long does processing take?"}
+    ],
+    "turns": [
+      {"partnerCue": "Guten Morgen. Was möchten Sie erledigen?", "cueTranslation": "Good morning. What would you like to take care of?", "modelResponse": "Ich möchte meinen neuen Wohnsitz anmelden.", "responseTranslation": "I would like to register my new address.", "requiredPhrases": ["ich möchte", "Wohnsitz anmelden"], "grammarMarkers": ["möchte"]},
+      {"partnerCue": "Haben Sie Ihren Ausweis und die Wohnungsgeberbestätigung dabei?", "cueTranslation": "Do you have your ID and landlord confirmation with you?", "modelResponse": "Meinen Ausweis habe ich dabei. Reicht statt der Bestätigung auch der Mietvertrag?", "responseTranslation": "I have my ID with me. Is the rental contract sufficient instead of the confirmation?", "requiredPhrases": ["Ausweis", "reicht"], "grammarMarkers": ["auch"]},
+      {"partnerCue": "Nein, die Bestätigung ist notwendig. Sie können sie nachreichen.", "cueTranslation": "No, the confirmation is necessary. You can submit it later.", "modelResponse": "Bis wann muss ich sie nachreichen, und wie lange dauert die Bearbeitung?", "responseTranslation": "By when must I submit it, and how long does processing take?", "requiredPhrases": ["bis wann", "wie lange"], "grammarMarkers": ["muss", "und"]},
+      {"partnerCue": "Bitte reichen Sie sie innerhalb einer Woche ein. Danach dauert es ungefähr zehn Tage.", "cueTranslation": "Please submit it within one week. After that it takes about ten days.", "modelResponse": "Gut, dann bringe ich die Bestätigung spätestens am Montag vorbei.", "responseTranslation": "Good, then I will bring the confirmation by Monday at the latest.", "requiredPhrases": ["spätestens am Montag", "Bestätigung"], "grammarMarkers": ["dann"]}
+    ],
+    "writingPrompt": "Schreiben Sie an das Bürgerbüro. Erklären Sie Ihr Anliegen, fragen Sie nach den notwendigen Unterlagen und bitten Sie um einen Termin.",
+    "writingChecklist": ["I stated my request.", "I asked which documents are required.", "I requested an appointment.", "I included my contact information."]
+  },
+  {
+    "id": "b1-interview",
+    "level": "B1",
+    "order": 1,
+    "title": "Succeed in a job interview",
+    "setting": "Interview for a new position",
+    "goal": "Present experience, support strengths with examples, and ask an informed question.",
+    "partnerRole": "Hiring manager",
+    "icon": "person.crop.rectangle.fill",
+    "canDo": ["Summarize relevant experience", "Give evidence for a strength", "Ask about the role"],
+    "phrases": [
+      {"german": "Ich habe bereits Erfahrung mit ...", "english": "I already have experience with ..."},
+      {"german": "Eine meiner Stärken ist ...", "english": "One of my strengths is ..."},
+      {"german": "Ein konkretes Beispiel dafür ist ...", "english": "A concrete example of that is ..."},
+      {"german": "Welche Weiterbildungsmöglichkeiten gibt es?", "english": "What training opportunities are there?"}
+    ],
+    "turns": [
+      {"partnerCue": "Erzählen Sie uns bitte etwas über Ihre bisherige Berufserfahrung.", "cueTranslation": "Please tell us something about your professional experience so far.", "modelResponse": "Ich habe drei Jahre im Kundenservice gearbeitet. Dort habe ich Anfragen bearbeitet und schwierige Gespräche selbstständig gelöst.", "responseTranslation": "I worked in customer service for three years. There I handled enquiries and resolved difficult conversations independently.", "requiredPhrases": ["ich habe", "gearbeitet"], "grammarMarkers": ["dort", "und"]},
+      {"partnerCue": "Welche Stärke ist für diese Stelle besonders wichtig?", "cueTranslation": "Which strength is particularly important for this position?", "modelResponse": "Eine meiner Stärken ist Zuverlässigkeit. Zum Beispiel habe ich in meinem letzten Team die Dienstplanung koordiniert.", "responseTranslation": "One of my strengths is reliability. For example, I coordinated rota planning in my last team.", "requiredPhrases": ["eine meiner Stärken", "zum Beispiel"], "grammarMarkers": ["ist", "habe"]},
+      {"partnerCue": "Haben Sie noch eine Frage an uns?", "cueTranslation": "Do you have another question for us?", "modelResponse": "Ja. Welche Weiterbildungsmöglichkeiten gibt es, und wie arbeitet das Team zusammen?", "responseTranslation": "Yes. What training opportunities are there, and how does the team work together?", "requiredPhrases": ["Weiterbildungsmöglichkeiten", "wie arbeitet"], "grammarMarkers": ["und"]},
+      {"partnerCue": "Wann könnten Sie bei uns anfangen?", "cueTranslation": "When could you start with us?", "modelResponse": "Meine Kündigungsfrist beträgt vier Wochen. Deshalb könnte ich am ersten September anfangen.", "responseTranslation": "My notice period is four weeks. Therefore I could start on the first of September.", "requiredPhrases": ["Kündigungsfrist", "anfangen"], "grammarMarkers": ["deshalb", "könnte"]}
+    ],
+    "writingPrompt": "Schreiben Sie nach einem Vorstellungsgespräch eine kurze E-Mail. Bedanken Sie sich, bestätigen Sie Ihr Interesse und greifen Sie einen Gesprächspunkt auf.",
+    "writingChecklist": ["I thanked the interviewer.", "I confirmed my interest.", "I referred to a specific discussion point.", "I used a professional greeting and closing."]
+  },
+  {
+    "id": "b1-first-day",
+    "level": "B1",
+    "order": 2,
+    "title": "Start a new job",
+    "setting": "First day after being hired",
+    "goal": "Understand priorities, clarify procedures, and confirm your first responsibilities.",
+    "partnerRole": "Team supervisor",
+    "icon": "person.badge.key.fill",
+    "canDo": ["Introduce relevant experience to a new team", "Ask precise questions about tasks and systems", "Summarize priorities and confirm next steps"],
+    "phrases": [
+      {"german": "Könnten Sie mir kurz zeigen, wie ...?", "english": "Could you briefly show me how ...?"},
+      {"german": "Welche Aufgabe hat heute Priorität?", "english": "Which task has priority today?"},
+      {"german": "An wen kann ich mich wenden, wenn ...?", "english": "Who can I contact if ...?"},
+      {"german": "Wenn ich Sie richtig verstanden habe, ...", "english": "If I understood you correctly, ..."}
+    ],
+    "turns": [
+      {"partnerCue": "Willkommen im Team! Erzählen Sie kurz, welche Erfahrungen Sie mitbringen.", "cueTranslation": "Welcome to the team! Briefly tell us what experience you bring.", "modelResponse": "Vielen Dank. Ich habe drei Jahre im Verkauf gearbeitet und dabei Kundinnen und Kunden persönlich sowie telefonisch beraten.", "responseTranslation": "Thank you. I worked in sales for three years and advised customers both in person and by phone.", "requiredPhrases": ["ich habe", "im Verkauf gearbeitet"], "grammarMarkers": ["dabei", "und"]},
+      {"partnerCue": "Heute lernen Sie unser Bestellsystem kennen. Welche Unterstützung brauchen Sie am Anfang?", "cueTranslation": "Today you will learn our ordering system. What support do you need at the beginning?", "modelResponse": "Könnten Sie mir zuerst zeigen, wie ich einen neuen Auftrag anlege und eine Bestellung korrigiere?", "responseTranslation": "Could you first show me how to create a new order and correct an order?", "requiredPhrases": ["könnten Sie mir", "zeigen"], "grammarMarkers": ["wie", "und"]},
+      {"partnerCue": "Natürlich. Danach bearbeiten Sie bitte zwei Testaufträge. Haben Sie noch eine Frage?", "cueTranslation": "Of course. Afterwards, please process two test orders. Do you have another question?", "modelResponse": "Ja. An wen kann ich mich wenden, wenn ein Kunde eine Reklamation hat?", "responseTranslation": "Yes. Who can I contact if a customer has a complaint?", "requiredPhrases": ["an wen", "mich wenden"], "grammarMarkers": ["wenn"]},
+      {"partnerCue": "Bei Reklamationen hilft Ihnen Frau Schneider. Was sind also Ihre ersten Schritte?", "cueTranslation": "Ms Schneider will help you with complaints. So what are your first steps?", "modelResponse": "Wenn ich Sie richtig verstanden habe, lerne ich zuerst das System kennen und bearbeite danach zwei Testaufträge.", "responseTranslation": "If I understood you correctly, I first learn the system and then process two test orders.", "requiredPhrases": ["richtig verstanden", "danach"], "grammarMarkers": ["wenn", "und"]}
+    ],
+    "writingPrompt": "Schreiben Sie nach Ihrem ersten Arbeitstag eine kurze E-Mail an Ihre Führungskraft. Fassen Sie Aufgaben, offene Fragen, Ansprechpersonen und den Plan für morgen zusammen.",
+    "writingChecklist": ["I summarized my assigned tasks.", "I named a contact person.", "I included one open question.", "I confirmed the next day's priorities."]
+  },
+  {
+    "id": "b1-team",
+    "level": "B1",
+    "order": 3,
+    "title": "Solve a team problem",
+    "setting": "Team meeting",
+    "goal": "Describe a problem objectively, respond to another view, and agree on action.",
+    "partnerRole": "Colleague",
+    "icon": "person.3.fill",
+    "canDo": ["Explain cause and impact", "Agree or disagree politely", "Propose a workable solution"],
+    "phrases": [
+      {"german": "Aus meiner Sicht besteht das Problem darin, dass ...", "english": "From my perspective, the problem is that ..."},
+      {"german": "Ich kann den Einwand nachvollziehen, allerdings ...", "english": "I can understand the objection; however ..."},
+      {"german": "Ich schlage vor, dass ...", "english": "I suggest that ..."},
+      {"german": "Darauf können wir uns einigen.", "english": "We can agree on that."}
+    ],
+    "turns": [
+      {"partnerCue": "Mehrere Aufgaben wurden diese Woche zu spät abgeschlossen. Woran lag das?", "cueTranslation": "Several tasks were finished late this week. What caused that?", "modelResponse": "Aus meiner Sicht bestand das Problem darin, dass die Zuständigkeiten nicht klar waren. Dadurch wurde Arbeit doppelt gemacht.", "responseTranslation": "From my perspective, the problem was that responsibilities were unclear. As a result, work was duplicated.", "requiredPhrases": ["aus meiner Sicht", "Problem"], "grammarMarkers": ["dass", "dadurch"]},
+      {"partnerCue": "Ich glaube eher, dass wir einfach zu wenig Zeit hatten.", "cueTranslation": "I think it was more that we simply had too little time.", "modelResponse": "Das kann ich nachvollziehen. Allerdings könnten klare Prioritäten ebenfalls Zeit sparen.", "responseTranslation": "I can understand that. However, clear priorities could also save time.", "requiredPhrases": ["kann ich nachvollziehen", "allerdings"], "grammarMarkers": ["könnten"]},
+      {"partnerCue": "Was schlagen Sie konkret vor?", "cueTranslation": "What do you propose specifically?", "modelResponse": "Ich schlage vor, dass wir jeden Morgen zehn Minuten planen und die Aufgaben schriftlich verteilen.", "responseTranslation": "I suggest that we plan for ten minutes every morning and assign tasks in writing.", "requiredPhrases": ["ich schlage vor", "dass wir"], "grammarMarkers": ["dass", "und"]},
+      {"partnerCue": "Darauf können wir uns einigen. Wer bereitet die erste Aufgabenliste vor?", "cueTranslation": "We can agree on that. Who will prepare the first task list?", "modelResponse": "Ich kann die erste Liste vorbereiten und sie morgen früh mit dem Team abstimmen.", "responseTranslation": "I can prepare the first list and coordinate it with the team tomorrow morning.", "requiredPhrases": ["ich kann", "mit dem Team"], "grammarMarkers": ["und"]}
+    ],
+    "writingPrompt": "Schreiben Sie eine kurze Zusammenfassung der Teamsitzung. Beschreiben Sie das Problem, zwei Standpunkte, die Entscheidung und die nächsten Schritte.",
+    "writingChecklist": ["I described the problem objectively.", "I included two viewpoints.", "I recorded the decision.", "I assigned clear next steps."]
+  },
+  {
+    "id": "b1-sick-leave",
+    "level": "B1",
+    "order": 4,
+    "title": "Handle sickness at work",
+    "setting": "Call with a supervisor after becoming ill",
+    "goal": "Report your absence responsibly, arrange a handover, and clarify the return-to-work process.",
+    "partnerRole": "Team supervisor",
+    "icon": "cross.case.fill",
+    "canDo": ["Explain that you cannot work", "Protect urgent tasks through a handover", "Clarify the certificate and return process"],
+    "phrases": [
+      {"german": "Ich melde mich krank, weil ...", "english": "I am calling in sick because ..."},
+      {"german": "Voraussichtlich falle ich bis ... aus.", "english": "I will probably be absent until ..."},
+      {"german": "Die dringenden Aufgaben habe ich bereits übergeben.", "english": "I have already handed over the urgent tasks."},
+      {"german": "Wie soll ich die Arbeitsunfähigkeitsbescheinigung einreichen?", "english": "How should I submit the certificate of incapacity for work?"}
+    ],
+    "turns": [
+      {"partnerCue": "Guten Morgen. Sie klingen nicht gut. Können Sie heute arbeiten?", "cueTranslation": "Good morning. You do not sound well. Can you work today?", "modelResponse": "Guten Morgen. Ich habe Fieber und starke Halsschmerzen, deshalb kann ich heute nicht arbeiten. Ich lasse mich nachher ärztlich untersuchen.", "responseTranslation": "Good morning. I have a fever and a severe sore throat, so I cannot work today. I will see a doctor later.", "requiredPhrases": ["kann ich heute nicht arbeiten", "ärztlich"], "grammarMarkers": ["deshalb"]},
+      {"partnerCue": "Welche Ihrer Aufgaben müssen heute unbedingt erledigt werden?", "cueTranslation": "Which of your tasks absolutely need to be completed today?", "modelResponse": "Die Kundenpräsentation liegt im gemeinsamen Ordner. Ich habe Frau Keller informiert, aber die neuen Anfragen müssten noch im Team verteilt werden.", "responseTranslation": "The customer presentation is in the shared folder. I informed Ms Keller, but the new enquiries still need to be distributed within the team.", "requiredPhrases": ["gemeinsamen Ordner", "im Team verteilt"], "grammarMarkers": ["aber", "müssten"]},
+      {"partnerCue": "Ab dem ersten Krankheitstag benötigen wir einen ärztlichen Nachweis.", "cueTranslation": "We require medical evidence from the first day of illness.", "modelResponse": "Danke für die Information. Rufen Sie die elektronische Bescheinigung bei der Krankenkasse ab, oder soll ich zusätzlich etwas einreichen?", "responseTranslation": "Thank you for the information. Do you retrieve the electronic certificate from the health insurer, or should I submit something in addition?", "requiredPhrases": ["elektronische Bescheinigung", "einreichen"], "grammarMarkers": ["oder", "soll"]},
+      {"partnerCue": "Wir rufen sie digital ab. Bitte geben Sie morgen kurz Bescheid, wie lange Sie ausfallen.", "cueTranslation": "We retrieve it digitally. Please let us know briefly tomorrow how long you will be absent.", "modelResponse": "Das mache ich. Ich melde mich morgen bis zwölf Uhr und teile Ihnen mit, wann ich voraussichtlich zurückkehren kann.", "responseTranslation": "I will do that. I will contact you by noon tomorrow and tell you when I am likely to return.", "requiredPhrases": ["ich melde mich", "voraussichtlich zurückkehren"], "grammarMarkers": ["wann", "und"]}
+    ],
+    "writingPrompt": "Schreiben Sie Ihrer Führungskraft eine Krankmeldung. Nennen Sie den voraussichtlichen Zeitraum, den Stand dringender Aufgaben, die Vertretung und den nächsten Kontaktzeitpunkt.",
+    "writingChecklist": ["I clearly reported my absence.", "I gave the likely duration.", "I explained the handover of urgent work.", "I named the next contact time.", "I used a professional greeting and closing."]
+  },
+  {
+    "id": "b1-school-meeting",
+    "level": "B1",
+    "order": 5,
+    "title": "Talk with a teacher",
+    "setting": "Parent-teacher progress meeting",
+    "goal": "Understand a school concern, ask for concrete examples, and agree on a realistic support plan.",
+    "partnerRole": "Class teacher",
+    "icon": "graduationcap.fill",
+    "canDo": ["Ask precisely about school progress", "Explain the situation at home", "Agree on support and a review date"],
+    "phrases": [
+      {"german": "Könnten Sie mir ein konkretes Beispiel nennen?", "english": "Could you give me a concrete example?"},
+      {"german": "Zu Hause ist uns aufgefallen, dass ...", "english": "At home we have noticed that ..."},
+      {"german": "Welche Unterstützung bietet die Schule an?", "english": "What support does the school offer?"},
+      {"german": "Dann vereinbaren wir, dass ...", "english": "Then we agree that ..."}
+    ],
+    "turns": [
+      {"partnerCue": "Ihre Tochter arbeitet im Unterricht gut mit, gibt aber ihre Hausaufgaben häufig nicht vollständig ab.", "cueTranslation": "Your daughter participates well in class but often does not hand in her homework completely.", "modelResponse": "Danke, dass Sie das ansprechen. Zu Hause ist uns aufgefallen, dass sie bei längeren Aufgaben schnell den Überblick verliert. In welchen Fächern passiert das besonders oft?", "responseTranslation": "Thank you for raising that. At home we have noticed that she quickly loses track of longer assignments. In which subjects does this happen particularly often?", "requiredPhrases": ["zu Hause", "in welchen Fächern"], "grammarMarkers": ["dass"]},
+      {"partnerCue": "Vor allem in Deutsch und Mathematik. Manchmal versteht sie die schriftliche Aufgabenstellung nicht.", "cueTranslation": "Especially in German and mathematics. Sometimes she does not understand the written task instructions.", "modelResponse": "Könnten Sie mir ein konkretes Beispiel nennen? Dann können wir gemeinsam üben, wie sie wichtige Informationen in der Aufgabe markiert.", "responseTranslation": "Could you give me a concrete example? Then we can practise together how she marks important information in the task.", "requiredPhrases": ["konkretes Beispiel", "gemeinsam üben"], "grammarMarkers": ["wie", "können"]},
+      {"partnerCue": "Die Schule bietet dienstags und donnerstags eine betreute Lernzeit an.", "cueTranslation": "The school offers supervised study time on Tuesdays and Thursdays.", "modelResponse": "Donnerstag würde gut passen. Wie melden wir sie dafür an, und soll sie bestimmte Materialien mitbringen?", "responseTranslation": "Thursday would work well. How do we register her for it, and should she bring specific materials?", "requiredPhrases": ["würde gut passen", "dafür an"], "grammarMarkers": ["und", "soll"]},
+      {"partnerCue": "Ich trage sie ein. In vier Wochen können wir prüfen, ob sich etwas verbessert hat.", "cueTranslation": "I will register her. In four weeks we can check whether anything has improved.", "modelResponse": "Dann vereinbaren wir, dass sie donnerstags teilnimmt und wir zu Hause die Aufgabenplanung üben. Könnten Sie mir den nächsten Gesprächstermin per E-Mail bestätigen?", "responseTranslation": "Then we agree that she will attend on Thursdays and that we will practise task planning at home. Could you confirm the next meeting date by email?", "requiredPhrases": ["dann vereinbaren wir", "per E-Mail bestätigen"], "grammarMarkers": ["dass", "und"]}
+    ],
+    "writingPrompt": "Schreiben Sie der Lehrkraft nach dem Gespräch eine kurze Zusammenfassung. Nennen Sie das Problem, die vereinbarten Maßnahmen, Ihre Aufgabe zu Hause und den nächsten Gesprächstermin.",
+    "writingChecklist": ["I summarized the concern objectively.", "I recorded the school's support measure.", "I stated what we will do at home.", "I included the review date.", "I requested confirmation where needed."]
+  },
+  {
+    "id": "b1-health-insurance",
+    "level": "B1",
+    "order": 6,
+    "title": "Clarify health insurance coverage",
+    "setting": "Telephone call about an unexpected medical invoice",
+    "goal": "Explain an insurance problem, trace the missing document, and confirm how the invoice will be handled.",
+    "partnerRole": "Health insurance adviser",
+    "icon": "heart.text.square.fill",
+    "canDo": ["Describe an unexpected invoice clearly", "Explain a change in employment", "Confirm documents, deadlines, and payment status"],
+    "phrases": [
+      {"german": "Trotz meines Versicherungsschutzes habe ich eine Rechnung erhalten.", "english": "Despite my insurance coverage, I received an invoice."},
+      {"german": "Könnten Sie bitte prüfen, woran das liegt?", "english": "Could you please check what caused this?"},
+      {"german": "Welcher Nachweis fehlt Ihnen noch?", "english": "Which supporting document are you still missing?"},
+      {"german": "Wird die Zahlungsfrist bis zur Klärung ausgesetzt?", "english": "Will the payment deadline be suspended until this is resolved?"}
+    ],
+    "turns": [
+      {"partnerCue": "Bitte schildern Sie kurz, weshalb Sie uns anrufen.", "cueTranslation": "Please briefly explain why you are calling us.", "modelResponse": "Trotz meines Versicherungsschutzes habe ich eine Rechnung über hundertachtzig Euro von einer Facharztpraxis erhalten. Könnten Sie bitte prüfen, woran das liegt?", "responseTranslation": "Despite my insurance coverage, I received an invoice for 180 euros from a specialist practice. Could you please check what caused this?", "requiredPhrases": ["Versicherungsschutzes", "Rechnung"], "grammarMarkers": ["trotz"]},
+      {"partnerCue": "In unserem System fehlt für August die Anmeldung Ihres neuen Arbeitgebers.", "cueTranslation": "Our system is missing your new employer's registration for August.", "modelResponse": "Ich habe die neue Stelle am ersten August begonnen und meinen Arbeitsvertrag bereits hochgeladen. Welcher Nachweis fehlt Ihnen noch?", "responseTranslation": "I started the new position on 1 August and already uploaded my employment contract. Which supporting document are you still missing?", "requiredPhrases": ["am ersten August", "welcher Nachweis"], "grammarMarkers": ["und"]},
+      {"partnerCue": "Wir benötigen zusätzlich die elektronische Arbeitgebermeldung. Bitten Sie Ihre Personalabteilung darum.", "cueTranslation": "We additionally need the electronic employer notification. Please ask your HR department for it.", "modelResponse": "Das erledige ich heute. Wird die Zahlungsfrist für die Rechnung bis zur Klärung ausgesetzt, oder muss ich die Praxis selbst informieren?", "responseTranslation": "I will take care of that today. Will the invoice payment deadline be suspended until this is resolved, or do I need to inform the practice myself?", "requiredPhrases": ["bis zur Klärung", "Praxis selbst informieren"], "grammarMarkers": ["oder", "muss"]},
+      {"partnerCue": "Wir informieren die Praxis, sobald die Meldung geprüft wurde. Sie erhalten danach einen Bescheid.", "cueTranslation": "We will inform the practice as soon as the notification has been checked. You will then receive a decision.", "modelResponse": "Vielen Dank. Dann kontaktiere ich heute meine Personalabteilung und warte auf Ihren schriftlichen Bescheid.", "responseTranslation": "Thank you. Then I will contact my HR department today and wait for your written decision.", "requiredPhrases": ["Personalabteilung", "schriftlichen Bescheid"], "grammarMarkers": ["dann", "und"]}
+    ],
+    "writingPrompt": "Schreiben Sie Ihrer Krankenkasse eine Nachricht zur Rechnung. Nennen Sie Behandlungsdatum, Rechnungsbetrag, Versicherungsstatus, Arbeitgeberwechsel und die bereits eingereichten Nachweise.",
+    "writingChecklist": ["I identified the invoice precisely.", "I explained my insurance and employment status.", "I listed submitted documents.", "I asked about the payment deadline.", "I requested a written decision."]
+  },
+  {
+    "id": "b1-authority",
+    "level": "B1",
+    "order": 7,
+    "title": "Request a deadline extension",
+    "setting": "Telephone call with an authority",
+    "goal": "Explain a formal problem, justify a request, and confirm the procedure.",
+    "partnerRole": "Caseworker",
+    "icon": "building.columns.fill",
+    "canDo": ["Refer to a file and deadline", "Give a clear justification", "Confirm required evidence"],
+    "phrases": [
+      {"german": "Ich beziehe mich auf Ihr Schreiben vom ...", "english": "I refer to your letter dated ..."},
+      {"german": "Die Frist kann ich leider nicht einhalten, weil ...", "english": "Unfortunately I cannot meet the deadline because ..."},
+      {"german": "Daher bitte ich um eine Verlängerung.", "english": "Therefore I request an extension."},
+      {"german": "Welche Nachweise muss ich einreichen?", "english": "Which evidence must I submit?"}
+    ],
+    "turns": [
+      {"partnerCue": "Guten Tag. Bitte nennen Sie zuerst Ihr Aktenzeichen.", "cueTranslation": "Good day. Please state your reference number first.", "modelResponse": "Guten Tag. Mein Aktenzeichen lautet B 417. Ich beziehe mich auf Ihr Schreiben vom dritten Mai.", "responseTranslation": "Good day. My reference number is B 417. I refer to your letter of 3 May.", "requiredPhrases": ["Aktenzeichen", "ich beziehe mich"], "grammarMarkers": ["auf"]},
+      {"partnerCue": "Worum geht es genau?", "cueTranslation": "What exactly is this about?", "modelResponse": "Die Frist kann ich leider nicht einhalten, weil mir noch ein Nachweis fehlt. Daher bitte ich um zwei Wochen Verlängerung.", "responseTranslation": "Unfortunately I cannot meet the deadline because I am still missing evidence. Therefore I request a two-week extension.", "requiredPhrases": ["Frist", "bitte ich um"], "grammarMarkers": ["weil", "daher"]},
+      {"partnerCue": "Das ist möglich, wenn Sie den Grund schriftlich belegen.", "cueTranslation": "That is possible if you document the reason in writing.", "modelResponse": "Welche Nachweise muss ich einreichen, und erhalte ich eine schriftliche Bestätigung?", "responseTranslation": "Which evidence must I submit, and will I receive written confirmation?", "requiredPhrases": ["welche Nachweise", "schriftliche Bestätigung"], "grammarMarkers": ["muss", "und"]},
+      {"partnerCue": "Laden Sie den fehlenden Nachweis im Online-Portal hoch. Die Bestätigung kommt anschließend per Post.", "cueTranslation": "Upload the missing evidence in the online portal. The confirmation will then arrive by post.", "modelResponse": "Verstanden. Ich lade den Nachweis heute hoch und prüfe danach mein Postfach.", "responseTranslation": "Understood. I will upload the evidence today and then check my mailbox.", "requiredPhrases": ["Nachweis hoch", "danach"], "grammarMarkers": ["und"]}
+    ],
+    "writingPrompt": "Schreiben Sie einen formellen Antrag auf Fristverlängerung. Nennen Sie Aktenzeichen, Frist, Begründung, gewünschten neuen Termin und Anlagen.",
+    "writingChecklist": ["I included the reference number.", "I named the current and requested deadlines.", "I gave a clear reason.", "I listed supporting documents.", "I requested written confirmation."]
+  },
+  {
+    "id": "b1-bank-security",
+    "level": "B1",
+    "order": 8,
+    "title": "Resolve an unknown bank payment",
+    "setting": "Security call with a bank",
+    "goal": "Report an unknown transaction, protect your account, and confirm the replacement and refund process.",
+    "partnerRole": "Bank security adviser",
+    "icon": "creditcard.trianglebadge.exclamationmark.fill",
+    "canDo": ["Identify a suspicious payment", "Make an informed security decision", "Confirm the dispute and replacement process"],
+    "phrases": [
+      {"german": "Diese Zahlung habe ich nicht veranlasst.", "english": "I did not authorize this payment."},
+      {"german": "Bitte sperren Sie die Karte vorsorglich.", "english": "Please block the card as a precaution."},
+      {"german": "Wie kann ich der Buchung widersprechen?", "english": "How can I dispute the transaction?"},
+      {"german": "Bitte nennen Sie mir die Vorgangsnummer.", "english": "Please give me the case number."}
+    ],
+    "turns": [
+      {"partnerCue": "Welche Buchung erkennen Sie auf Ihrem Konto nicht?", "cueTranslation": "Which transaction on your account do you not recognize?", "modelResponse": "Gestern wurden vierundachtzig Euro neunzig an einen Onlinehändler gebucht. Diese Zahlung habe ich nicht veranlasst und den Händler kenne ich nicht.", "responseTranslation": "Yesterday, 84.90 euros were charged to an online retailer. I did not authorize this payment and I do not know the retailer.", "requiredPhrases": ["Zahlung habe ich nicht veranlasst", "Onlinehändler"], "grammarMarkers": ["und"]},
+      {"partnerCue": "Dann sollten wir Ihre Karte sofort sperren. Sind Sie damit einverstanden?", "cueTranslation": "Then we should block your card immediately. Do you agree?", "modelResponse": "Ja, bitte sperren Sie die Karte vorsorglich. Sicherheit ist mir wichtiger, auch wenn ich einige Tage auf die Ersatzkarte warten muss.", "responseTranslation": "Yes, please block the card as a precaution. Security is more important to me, even if I have to wait a few days for the replacement card.", "requiredPhrases": ["sperren Sie die Karte", "Ersatzkarte"], "grammarMarkers": ["auch wenn"]},
+      {"partnerCue": "Die neue Karte kommt in drei bis fünf Werktagen. Der Buchung können Sie in der App widersprechen.", "cueTranslation": "The new card will arrive in three to five working days. You can dispute the transaction in the app.", "modelResponse": "Welche Unterlagen soll ich dem Widerspruch beifügen, und kann ich mein Konto bis dahin weiterhin online nutzen?", "responseTranslation": "Which documents should I attach to the dispute, and can I continue to use my account online until then?", "requiredPhrases": ["dem Widerspruch", "online nutzen"], "grammarMarkers": ["und", "soll"]},
+      {"partnerCue": "Ein Screenshot der Buchung reicht aus. Ihr Onlinebanking bleibt aktiv.", "cueTranslation": "A screenshot of the transaction is sufficient. Your online banking remains active.", "modelResponse": "Gut, dann reiche ich den Widerspruch heute ein. Bitte nennen Sie mir noch die Vorgangsnummer für die Kartensperrung.", "responseTranslation": "Good, then I will submit the dispute today. Please also give me the case number for the card block.", "requiredPhrases": ["Widerspruch heute ein", "Vorgangsnummer"], "grammarMarkers": ["dann"]}
+    ],
+    "writingPrompt": "Schreiben Sie der Bank einen Widerspruch gegen die unbekannte Buchung. Nennen Sie Betrag, Datum, Empfänger, Kartensperrung und die gewünschte Erstattung.",
+    "writingChecklist": ["I identified the transaction.", "I stated that I did not authorize it.", "I documented the card block.", "I requested a refund investigation.", "I included the case number."]
+  },
+  {
+    "id": "b1-housing",
+    "level": "B1",
+    "order": 9,
+    "title": "Resolve a housing problem",
+    "setting": "Call with a property manager",
+    "goal": "Document a serious defect, negotiate action, and set a clear deadline.",
+    "partnerRole": "Property manager",
+    "icon": "wrench.adjustable.fill",
+    "canDo": ["Describe a defect precisely", "Explain consequences", "Agree on a repair and deadline"],
+    "phrases": [
+      {"german": "Seit mehreren Tagen funktioniert ... nicht.", "english": "For several days ... has not been working."},
+      {"german": "Dadurch ist die Wohnung nur eingeschränkt nutzbar.", "english": "As a result, use of the apartment is restricted."},
+      {"german": "Ich bitte Sie, den Mangel bis ... zu beheben.", "english": "I ask you to remedy the defect by ..."},
+      {"german": "Bitte bestätigen Sie den Termin schriftlich.", "english": "Please confirm the appointment in writing."}
+    ],
+    "turns": [
+      {"partnerCue": "Was genau funktioniert in Ihrer Wohnung nicht?", "cueTranslation": "What exactly is not working in your apartment?", "modelResponse": "Seit vier Tagen funktioniert die Heizung im Schlafzimmer nicht. Obwohl das Thermostat aufgedreht ist, bleibt der Heizkörper kalt.", "responseTranslation": "The bedroom heating has not worked for four days. Although the thermostat is turned up, the radiator remains cold.", "requiredPhrases": ["seit vier Tagen", "funktioniert"], "grammarMarkers": ["obwohl"]},
+      {"partnerCue": "Wir könnten nächste Woche jemanden schicken.", "cueTranslation": "We could send someone next week.", "modelResponse": "Das ist leider zu spät, weil die Temperatur nachts stark sinkt. Ich bitte um einen Termin innerhalb der nächsten zwei Tage.", "responseTranslation": "Unfortunately that is too late because the temperature drops sharply at night. I request an appointment within the next two days.", "requiredPhrases": ["zu spät", "ich bitte um"], "grammarMarkers": ["weil"]},
+      {"partnerCue": "Der Techniker kann übermorgen zwischen acht und zwölf Uhr kommen.", "cueTranslation": "The technician can come the day after tomorrow between eight and twelve.", "modelResponse": "Damit bin ich einverstanden. Bitte bestätigen Sie mir den Termin noch schriftlich.", "responseTranslation": "I agree to that. Please confirm the appointment to me in writing.", "requiredPhrases": ["einverstanden", "schriftlich"], "grammarMarkers": ["bitte"]},
+      {"partnerCue": "Ist der Zugang zur Wohnung in diesem Zeitraum sichergestellt?", "cueTranslation": "Is access to the apartment guaranteed during this time?", "modelResponse": "Ja, ich arbeite an diesem Tag zu Hause und kann dem Techniker die Tür öffnen.", "responseTranslation": "Yes, I am working from home that day and can open the door for the technician.", "requiredPhrases": ["an diesem Tag", "die Tür öffnen"], "grammarMarkers": ["und"]}
+    ],
+    "writingPrompt": "Schreiben Sie eine formelle Mängelanzeige. Beschreiben Sie den Defekt, seine Folgen, frühere Kontaktversuche und eine angemessene Frist.",
+    "writingChecklist": ["I described the defect precisely.", "I explained the consequences.", "I mentioned earlier contact attempts.", "I set a clear and reasonable deadline.", "I requested written confirmation."]
+  },
+  {
+    "id": "b1-neighbor",
+    "level": "B1",
+    "order": 10,
+    "title": "Resolve a conflict with a neighbor",
+    "setting": "Calm conversation about repeated late-night noise",
+    "goal": "Raise a sensitive problem respectfully, acknowledge another viewpoint, and agree on practical boundaries.",
+    "partnerRole": "Neighbor",
+    "icon": "house.and.flag.fill",
+    "canDo": ["Describe repeated disruption without attacking", "Acknowledge another person's perspective", "Agree on quiet times and direct communication"],
+    "phrases": [
+      {"german": "Ich möchte ein Problem in Ruhe ansprechen.", "english": "I would like to discuss a problem calmly."},
+      {"german": "In den letzten Wochen ist mir aufgefallen, dass ...", "english": "In recent weeks I have noticed that ..."},
+      {"german": "Ich verstehe Ihren Standpunkt, trotzdem ...", "english": "I understand your point of view; nevertheless ..."},
+      {"german": "Können wir uns darauf einigen, dass ...?", "english": "Can we agree that ...?"}
+    ],
+    "turns": [
+      {"partnerCue": "Sie wollten mit mir über den Lärm sprechen. Was stört Sie genau?", "cueTranslation": "You wanted to speak with me about the noise. What exactly is bothering you?", "modelResponse": "Ich möchte das Problem in Ruhe ansprechen. In den letzten drei Wochen war die Musik mehrmals nach dreiundzwanzig Uhr deutlich in meinem Schlafzimmer zu hören.", "responseTranslation": "I would like to discuss the problem calmly. In the last three weeks, the music could clearly be heard in my bedroom several times after 11 p.m.", "requiredPhrases": ["in Ruhe ansprechen", "nach dreiundzwanzig Uhr"], "grammarMarkers": ["war"]},
+      {"partnerCue": "Am Samstag hatte ich Besuch. So oft feiern wir eigentlich nicht.", "cueTranslation": "I had visitors on Saturday. We do not actually celebrate that often.", "modelResponse": "Ich verstehe Ihren Standpunkt, trotzdem muss ich morgens früh arbeiten. Es würde mir helfen, wenn die Musik ab zweiundzwanzig Uhr leiser wäre.", "responseTranslation": "I understand your point of view; nevertheless, I have to work early in the morning. It would help me if the music were quieter after 10 p.m.", "requiredPhrases": ["verstehe Ihren Standpunkt", "es würde mir helfen"], "grammarMarkers": ["wenn", "wäre"]},
+      {"partnerCue": "Das kann ich berücksichtigen. Was soll ich tun, falls es doch einmal zu laut wird?", "cueTranslation": "I can take that into consideration. What should I do if it does become too loud?", "modelResponse": "Können wir uns darauf einigen, dass ich Ihnen zuerst eine kurze Nachricht schreibe? Dann können wir das direkt lösen, ohne die Hausverwaltung einzuschalten.", "responseTranslation": "Can we agree that I will first send you a short message? Then we can solve it directly without involving the property management.", "requiredPhrases": ["darauf einigen", "kurze Nachricht"], "grammarMarkers": ["dass", "ohne"]},
+      {"partnerCue": "Einverstanden. Ich gebe Ihnen meine Nummer und achte künftig auf die Ruhezeit.", "cueTranslation": "Agreed. I will give you my number and observe quiet hours in future.", "modelResponse": "Vielen Dank. Ich finde es gut, dass wir eine direkte Lösung gefunden haben, mit der wir beide leben können.", "responseTranslation": "Thank you. I am glad that we found a direct solution that both of us can live with.", "requiredPhrases": ["direkte Lösung", "wir beide"], "grammarMarkers": ["dass", "mit der"]}
+    ],
+    "writingPrompt": "Schreiben Sie eine sachliche Nachricht an Ihre Hausgemeinschaft. Beschreiben Sie die Störung, nennen Sie konkrete Zeiten und schlagen Sie eine respektvolle Lösung vor.",
+    "writingChecklist": ["I described facts rather than blaming.", "I included specific times.", "I acknowledged different needs.", "I proposed a direct solution.", "I kept the tone respectful."]
+  },
+  {
+    "id": "b1-qualification",
+    "level": "B1",
+    "order": 11,
+    "title": "Plan recognition and further training",
+    "setting": "Career guidance appointment",
+    "goal": "Present qualifications from abroad, understand recognition steps, and create a funded training plan.",
+    "partnerRole": "Career adviser",
+    "icon": "briefcase.and.arrow.trianglehead.2.clockwise.rotate.90.fill",
+    "canDo": ["Summarize qualifications and experience", "Ask about recognition and funding", "Confirm a sequence of next steps"],
+    "phrases": [
+      {"german": "In meinem Herkunftsland habe ich eine Ausbildung als ... abgeschlossen.", "english": "In my country of origin, I completed training as ..."},
+      {"german": "Ich möchte wissen, ob mein Abschluss anerkannt wird.", "english": "I would like to know whether my qualification will be recognized."},
+      {"german": "Welche Weiterbildung verbessert meine beruflichen Chancen?", "english": "Which further training would improve my career prospects?"},
+      {"german": "Kann diese Maßnahme finanziell gefördert werden?", "english": "Can this program receive financial support?"}
+    ],
+    "turns": [
+      {"partnerCue": "Welches berufliche Ziel möchten Sie in Deutschland erreichen?", "cueTranslation": "What professional goal would you like to achieve in Germany?", "modelResponse": "In meinem Herkunftsland habe ich eine Ausbildung in der Buchhaltung abgeschlossen und fünf Jahre Berufserfahrung gesammelt. Ich möchte hier wieder im Finanzbereich arbeiten.", "responseTranslation": "In my country of origin, I completed accounting training and gained five years of professional experience. I would like to work in finance here again.", "requiredPhrases": ["Ausbildung", "Berufserfahrung"], "grammarMarkers": ["und"]},
+      {"partnerCue": "Sind Ihre Zeugnisse bereits übersetzt und anerkannt?", "cueTranslation": "Have your certificates already been translated and recognized?", "modelResponse": "Die Zeugnisse sind übersetzt, aber das Anerkennungsverfahren habe ich noch nicht begonnen. Welche Stelle ist dafür zuständig?", "responseTranslation": "The certificates have been translated, but I have not yet started the recognition process. Which office is responsible for that?", "requiredPhrases": ["Anerkennungsverfahren", "dafür zuständig"], "grammarMarkers": ["aber"]},
+      {"partnerCue": "Zuerst sollten Sie die Anerkennungsberatung nutzen. Danach wäre ein berufsbezogener B2-Kurs sinnvoll.", "cueTranslation": "First you should use the recognition advisory service. After that, a job-related B2 course would be useful.", "modelResponse": "Das klingt sinnvoll. In welcher Reihenfolge beantrage ich die Beratung, den Sprachkurs und eine mögliche finanzielle Förderung?", "responseTranslation": "That sounds sensible. In what order do I apply for the advisory service, the language course, and possible financial support?", "requiredPhrases": ["in welcher Reihenfolge", "finanzielle Förderung"], "grammarMarkers": ["und"]},
+      {"partnerCue": "Vereinbaren Sie zuerst die Beratung. Mit deren Empfehlung können wir anschließend über einen Bildungsgutschein sprechen.", "cueTranslation": "First arrange the advisory appointment. With its recommendation, we can then discuss a training voucher.", "modelResponse": "Dann vereinbare ich heute den Beratungstermin und bringe die Empfehlung zu unserem nächsten Gespräch mit. Bitte geben Sie mir noch die Kontaktdaten.", "responseTranslation": "Then I will arrange the advisory appointment today and bring the recommendation to our next meeting. Please also give me the contact details.", "requiredPhrases": ["Beratungstermin", "Kontaktdaten"], "grammarMarkers": ["dann", "und"]}
+    ],
+    "writingPrompt": "Schreiben Sie einer Anerkennungsberatungsstelle. Beschreiben Sie Ihren Abschluss, Ihre Berufserfahrung, vorhandene Übersetzungen und Ihr berufliches Ziel in Deutschland.",
+    "writingChecklist": ["I described my qualification.", "I summarized relevant experience.", "I listed available documents.", "I stated my career goal.", "I requested an appointment and document checklist."]
+  },
+  {
+    "id": "b1-community-club",
+    "level": "B1",
+    "order": 12,
+    "title": "Join a local community group",
+    "setting": "Conversation at a neighborhood volunteer meeting",
+    "goal": "Introduce your interests, understand a volunteer role, and commit to a realistic first task.",
+    "partnerRole": "Volunteer coordinator",
+    "icon": "person.3.sequence.fill",
+    "canDo": ["Explain why you want to participate", "Ask about responsibilities and frequency", "Confirm a trial date and contact person"],
+    "phrases": [
+      {"german": "Ich möchte mich gern in meinem Stadtteil engagieren.", "english": "I would like to get involved in my neighborhood."},
+      {"german": "Welche Aufgaben übernehmen die Ehrenamtlichen?", "english": "What tasks do the volunteers take on?"},
+      {"german": "Wie oft findet das Treffen statt?", "english": "How often does the meeting take place?"},
+      {"german": "Ich würde gern zunächst einen Termin ausprobieren.", "english": "I would initially like to try one session."}
+    ],
+    "turns": [
+      {"partnerCue": "Schön, dass Sie da sind. Warum interessieren Sie sich für unsere Nachbarschaftsinitiative?", "cueTranslation": "It is nice that you are here. Why are you interested in our neighborhood initiative?", "modelResponse": "Ich wohne seit sechs Monaten im Stadtteil und möchte mich gern engagieren. Außerdem würde ich dabei neue Menschen kennenlernen und mein Deutsch im Alltag benutzen.", "responseTranslation": "I have lived in the neighborhood for six months and would like to get involved. I would also meet new people and use my German in everyday life.", "requiredPhrases": ["möchte mich gern engagieren", "neue Menschen kennenlernen"], "grammarMarkers": ["außerdem", "würde"]},
+      {"partnerCue": "Wir suchen gerade Unterstützung für unser wöchentliches Sprachcafé.", "cueTranslation": "We are currently looking for support for our weekly language café.", "modelResponse": "Das interessiert mich. Welche Aufgaben übernehmen die Ehrenamtlichen, und wie viel Zeit sollte ich dafür einplanen?", "responseTranslation": "That interests me. What tasks do the volunteers take on, and how much time should I plan for it?", "requiredPhrases": ["welche Aufgaben", "Zeit einplanen"], "grammarMarkers": ["und", "sollte"]},
+      {"partnerCue": "Sie begrüßen Gäste, bereiten Tische vor und helfen bei kleinen Gesprächsgruppen. Das Treffen dauert zwei Stunden.", "cueTranslation": "You welcome guests, prepare tables, and help with small conversation groups. The meeting lasts two hours.", "modelResponse": "Die Gesprächsgruppen passen gut zu meiner Erfahrung. Ich könnte außerdem bei der Anmeldung helfen, solange mir am Anfang jemand den Ablauf erklärt.", "responseTranslation": "The conversation groups suit my experience well. I could also help with registration as long as someone explains the process to me at the beginning.", "requiredPhrases": ["passen gut", "bei der Anmeldung helfen"], "grammarMarkers": ["solange", "könnte"]},
+      {"partnerCue": "Kommen Sie gern nächsten Mittwoch um achtzehn Uhr zu einem Probetermin.", "cueTranslation": "You are welcome to come to a trial session next Wednesday at 6 p.m.", "modelResponse": "Sehr gern. Ich komme nächsten Mittwoch um achtzehn Uhr und melde mich am Empfang bei Ihnen. Könnten Sie mir die Adresse noch per Nachricht schicken?", "responseTranslation": "With pleasure. I will come next Wednesday at 6 p.m. and ask for you at reception. Could you send me the address by message?", "requiredPhrases": ["nächsten Mittwoch", "Adresse"], "grammarMarkers": ["und", "könnten"]}
+    ],
+    "writingPrompt": "Schreiben Sie der Initiative nach dem Gespräch. Bestätigen Sie den Probetermin, nennen Sie Ihre Interessen und Erfahrungen und fragen Sie nach Adresse und Ansprechpartner.",
+    "writingChecklist": ["I confirmed the date and time.", "I explained my motivation.", "I mentioned a useful skill.", "I asked for the exact address.", "I named the contact person."]
+  },
+  {
+    "id": "b1-exam-speaking",
+    "level": "B1",
+    "order": 13,
+    "title": "Plan and express an opinion",
+    "setting": "B1 oral exam practice",
+    "goal": "Make suggestions, react to a partner, and support an opinion with reasons and an example.",
+    "partnerRole": "Exam partner",
+    "icon": "checkmark.seal.fill",
+    "canDo": ["Keep a planning conversation moving", "Respond politely to alternatives", "Structure an opinion"],
+    "phrases": [
+      {"german": "Wir könnten ...", "english": "We could ..."},
+      {"german": "Was hältst du davon?", "english": "What do you think of that?"},
+      {"german": "Meiner Meinung nach ...", "english": "In my opinion ..."},
+      {"german": "Ein gutes Beispiel dafür ist ...", "english": "A good example of that is ..."}
+    ],
+    "turns": [
+      {"partnerCue": "Wir sollen ein gemeinsames Lernwochenende planen. Wann und wo könnten wir uns treffen?", "cueTranslation": "We should plan a study weekend together. When and where could we meet?", "modelResponse": "Wir könnten uns am Samstag um zehn Uhr in der Bibliothek treffen. Was hältst du davon?", "responseTranslation": "We could meet at the library at ten on Saturday. What do you think?", "requiredPhrases": ["wir könnten", "was hältst du davon"], "grammarMarkers": ["könnten"]},
+      {"partnerCue": "Am Vormittag muss ich arbeiten. Wäre der Nachmittag möglich?", "cueTranslation": "I have to work in the morning. Would the afternoon be possible?", "modelResponse": "Ja, das passt auch. Dann schlage ich vierzehn Uhr vor, damit wir genug Zeit haben.", "responseTranslation": "Yes, that works too. Then I suggest two o'clock so that we have enough time.", "requiredPhrases": ["das passt", "schlage ich"], "grammarMarkers": ["damit"]},
+      {"partnerCue": "Sollte man in der Stadt häufiger öffentliche Verkehrsmittel benutzen?", "cueTranslation": "Should people use public transport more often in the city?", "modelResponse": "Meiner Meinung nach ja, weil dadurch Verkehr und Emissionen sinken. Zum Beispiel fahre ich jeden Tag mit der Bahn zur Arbeit.", "responseTranslation": "In my opinion, yes, because this reduces traffic and emissions. For example, I take the train to work every day.", "requiredPhrases": ["meiner Meinung nach", "zum Beispiel"], "grammarMarkers": ["weil", "dadurch"]},
+      {"partnerCue": "Manche Menschen sagen, dass Busse und Bahnen zu unzuverlässig sind. Was meinen Sie?", "cueTranslation": "Some people say that buses and trains are too unreliable. What do you think?", "modelResponse": "Diesen Einwand verstehe ich. Trotzdem sollte man den Nahverkehr ausbauen, damit er zuverlässiger und attraktiver wird.", "responseTranslation": "I understand this objection. Nevertheless, public transport should be expanded so that it becomes more reliable and attractive.", "requiredPhrases": ["Einwand verstehe", "trotzdem"], "grammarMarkers": ["damit", "wird"]}
+    ],
+    "writingPrompt": "Bereiten Sie eine B1-Meinungsaufgabe vor. Schreiben Sie eine Einleitung, Ihre Meinung, zwei Gründe, ein Beispiel, ein Gegenargument und ein Fazit.",
+    "writingChecklist": ["I stated my opinion clearly.", "I gave two different reasons.", "I included a concrete example.", "I responded to a counterargument.", "I ended with a conclusion."]
+  }
+]

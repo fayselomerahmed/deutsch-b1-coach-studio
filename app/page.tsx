@@ -3,8 +3,8 @@ import { getChatGPTUser } from "./chatgpt-auth";
 import { AdminPortal } from "./admin-portal";
 
 export const metadata: Metadata = {
-  title: "Deutsch Coach Content Studio",
-  description: "Secure live curriculum publishing for Deutsch B1 Coach.",
+  title: "Deutsch Coach Curriculum Studio",
+  description: "Add, edit, organize, and publish live German curriculum to the Deutsch Coach iPhone app.",
 };
 
 export const dynamic = "force-dynamic";

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "quiz-a1-001",
+    "level": "A1",
+    "unitId": "a1-sein-haben",
+    "type": "multipleChoice",
+    "skill": "grammar",
+    "prompt": "Ich ___ müde.",
+    "choices": ["bin", "habe", "ist"],
+    "correctAnswer": "bin",
+    "explanation": "Use sein for states like tired."
+  },
+  {
+    "id": "quiz-a1-002",
+    "level": "A1",
+    "unitId": "a1-accusative",
+    "type": "multipleChoice",
+    "skill": "grammar",
+    "prompt": "Ich kaufe ___ Kaffee.",
+    "choices": ["der", "den", "die"],
+    "correctAnswer": "den",
+    "explanation": "Kaffee is masculine and the direct object."
+  },
+  {
+    "id": "quiz-a1-003",
+    "level": "A1",
+    "unitId": "a1-word-order",
+    "type": "sentenceReorder",
+    "skill": "grammar",
+    "prompt": "Reorder: morgen / komme / ich",
+    "choices": ["Morgen ich komme.", "Morgen komme ich.", "Ich morgen komme."],
+    "correctAnswer": "Morgen komme ich.",
+    "explanation": "The conjugated verb stays in second position."
+  },
+  {
+    "id": "quiz-a2-001",
+    "level": "A2",
+    "unitId": "a2-subordinate",
+    "type": "multipleChoice",
+    "skill": "grammar",
+    "prompt": "Ich bleibe zu Hause, weil ich krank ___.",
+    "choices": ["bin", "ist", "sein"],
+    "correctAnswer": "bin",
+    "explanation": "In a weil-clause the conjugated verb goes to the end."
+  },
+  {
+    "id": "quiz-b1-001",
+    "level": "B1",
+    "unitId": "b1-konjunktiv-ii",
+    "type": "multipleChoice",
+    "skill": "grammar",
+    "prompt": "Ich ___ gern einen Termin machen.",
+    "choices": ["würde", "werde", "wurde"],
+    "correctAnswer": "würde",
+    "explanation": "Use würde gern for polite requests."
+  }
+]

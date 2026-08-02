@@ -1,17 +1,10 @@
 import { env } from "cloudflare:workers";
+import {
+  isSupportedContentFile,
+  validateContentCollection,
+} from "../lib/content-catalog";
 
-export const supportedContentFiles = [
-  "grammar",
-  "vocab_a1",
-  "vocab_a2",
-  "vocab_b1",
-  "lessons",
-  "quizzes",
-  "practical_missions",
-  "everyday_phrases",
-] as const;
-
-export type SupportedContentFile = (typeof supportedContentFiles)[number];
+export { isSupportedContentFile };
 
 export type ContentRow = {
   file_name: string;
@@ -57,10 +50,6 @@ export async function ensureContentSchema() {
     )`),
   ]);
   await db.prepare("PRAGMA optimize").run();
-}
-
-export function isSupportedContentFile(value: string): value is SupportedContentFile {
-  return supportedContentFiles.includes(value as SupportedContentFile);
 }
 
 export async function getOwnerUserId() {
@@ -124,16 +113,7 @@ export function decodeAndValidatePayload(fileName: string, payloadBase64: string
     throw new Error("The selected file is not valid JSON.");
   }
 
-  if (!Array.isArray(parsed) || parsed.length === 0) {
-    throw new Error("The curriculum file must contain a non-empty list.");
-  }
-  const ids = parsed.map((item) => {
-    if (!item || typeof item !== "object" || !("id" in item)) return null;
-    return String((item as { id: unknown }).id ?? "").trim();
-  });
-  if (ids.some((id) => !id)) throw new Error("Every curriculum item must have an ID.");
-  if (new Set(ids).size !== ids.length) throw new Error("The curriculum file contains duplicate IDs.");
-  return parsed.length;
+  return validateContentCollection(fileName, parsed).length;
 }
 
 export async function sha256Hex(payloadBase64: string) {
