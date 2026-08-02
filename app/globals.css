@@ -216,8 +216,8 @@ button:disabled,
 
 .workspace-switcher {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: min(100%, 390px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: min(100%, 540px);
   margin-bottom: 14px;
   padding: 4px;
   border: 1px solid var(--line);
@@ -423,6 +423,34 @@ button:disabled,
 .access-type-control small { margin-top: 3px; color: var(--muted); font-size: .67rem; }
 .privacy-copy { color: var(--muted); font-size: .67rem; line-height: 1.45; }
 
+.metrics-workspace {
+  min-width: 0;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 96%);
+  box-shadow: var(--shadow);
+}
+
+.metrics-heading { display: flex; min-width: 0; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.metrics-heading > div { min-width: 0; }
+.metrics-heading .eyebrow { margin-top: 0; }
+.metrics-heading p:not(.eyebrow) { max-width: 720px; margin-top: 7px; color: var(--muted); font-size: .9rem; line-height: 1.5; }
+.metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
+.metric-card { min-width: 0; padding: 17px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-soft); }
+.metric-card > strong { display: block; color: var(--blue); font-size: 1.65rem; }
+.metric-card h3 { margin-top: 5px; }
+.metric-card p { margin-top: 4px; color: var(--muted); font-size: .7rem; line-height: 1.4; }
+.metric-detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
+.metric-panel { min-width: 0; min-height: 220px; padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.metric-panel .eyebrow { margin: 0 0 5px; }
+.metric-panel > p:not(.eyebrow) { margin-top: 10px; color: var(--muted); font-size: .78rem; line-height: 1.5; }
+.metric-rate { display: block; margin-top: 18px; color: var(--green); font-size: 3rem; line-height: 1; }
+.metric-bars { display: flex; height: 122px; align-items: flex-end; gap: 5px; margin-top: 20px; border-bottom: 1px solid var(--line); }
+.metric-bars span { min-width: 5px; flex: 1; border-radius: 4px 4px 0 0; background: linear-gradient(180deg, var(--blue), var(--green)); transition: height 220ms cubic-bezier(.2, .8, .2, 1); }
+.metric-empty { display: grid; min-height: 122px; place-items: center; border: 1px dashed var(--line); border-radius: 7px; }
+.metrics-privacy { margin-top: 14px; color: var(--muted); font-size: .72rem; line-height: 1.5; }
+
 .access-list-panel .form-heading { padding-bottom: 13px; border-bottom: 1px solid var(--line); }
 .collection-loading.compact, .empty-state.compact { min-height: 190px; margin-top: 12px; }
 .entitlement-list { display: grid; gap: 8px; margin-top: 12px; }
@@ -487,6 +515,7 @@ button:disabled,
   .section-nav-item small { display: none; }
   .workspace { padding: 22px; }
   .access-layout { grid-template-columns: minmax(0, 1fr); }
+  .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 650px) {
@@ -498,6 +527,10 @@ button:disabled,
   .account-block { width: 100%; padding-top: 10px; border-top: 1px solid var(--line); text-align: left; }
   .workspace { padding: 17px; }
   .access-workspace { padding: 17px; }
+  .metrics-workspace { padding: 17px; }
+  .metrics-heading { align-items: stretch; flex-direction: column; gap: 14px; }
+  .metrics-heading .secondary-button { width: 100%; }
+  .metric-detail-grid { grid-template-columns: minmax(0, 1fr); }
   .access-heading { align-items: stretch; flex-direction: column; gap: 14px; }
   .access-stats { width: 100%; }
   .access-stats span { min-width: 0; flex: 1; }
@@ -518,6 +551,8 @@ button:disabled,
 @media (max-width: 430px) {
   .auth-panel { padding: 26px 20px; }
   .workspace-switcher { width: 100%; }
+  .workspace-switcher button { padding-inline: 6px; font-size: .72rem; }
+  .metric-grid { grid-template-columns: minmax(0, 1fr); }
   .access-type-control { grid-template-columns: minmax(0, 1fr); }
   h2 { font-size: 1.45rem; }
   .record-main { align-items: flex-start; }

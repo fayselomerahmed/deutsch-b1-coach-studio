@@ -41,3 +41,14 @@ export const accessEntitlements = sqliteTable("access_entitlements", {
   updatedAt: integer("updated_at").notNull(),
   updatedBy: text("updated_by").notNull(),
 });
+
+export const productMetrics = sqliteTable(
+  "product_metrics",
+  {
+    day: text("day").notNull(),
+    event: text("event").notNull(),
+    appBuild: integer("app_build").notNull(),
+    count: integer("count").notNull().default(0),
+  },
+  (table) => [primaryKey({ columns: [table.day, table.event, table.appBuild] })],
+);

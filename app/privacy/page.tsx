@@ -33,8 +33,11 @@ export default function PrivacyPage() {
           <p>
             Lesson completion, review schedules, scores, streaks, learning settings,
             marked vocabulary, and aggregate product milestones are stored locally on
-            your device. The app does not upload your name, answers, study history, or
-            voice recordings with curriculum updates.
+            your device. Anonymous improvement sharing is off by default. If you enable
+            it in Settings, Deutsch Coach receives only the milestone name and app build
+            and adds it to a daily total. No account or device identifier is sent. The
+            app never uploads your name, answers, study history, transcripts, or voice
+            recordings with these totals or curriculum updates.
           </p>
         </section>
 
@@ -74,7 +77,8 @@ export default function PrivacyPage() {
             Microphone and notification permissions are optional. You can reset all
             learning progress from Settings. You can manage or cancel subscriptions in
             your Apple Account. Deutsch Coach contains no third-party advertising or
-            tracking SDK.
+            tracking SDK. You can turn anonymous improvement sharing off at any time;
+            this stops all future milestone reporting.
           </p>
         </section>
 

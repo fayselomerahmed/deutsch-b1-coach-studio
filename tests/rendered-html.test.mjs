@@ -86,3 +86,25 @@ test("ships guided trial and full-access administration", async () => {
   assert.match(portal, /Access IDs are hashed before storage/);
   assert.match(migration, /access_entitlements/);
 });
+
+test("ships opt-in aggregate product health without learner identifiers", async () => {
+  const [eventRoute, adminRoute, metricStore, portal, privacy, migration] = await Promise.all([
+    readFile(new URL("app/api/analytics/event/route.ts", root), "utf8"),
+    readFile(new URL("app/api/admin/metrics/route.ts", root), "utf8"),
+    readFile(new URL("db/metric-store.ts", root), "utf8"),
+    readFile(new URL("app/admin-portal.tsx", root), "utf8"),
+    readFile(new URL("app/privacy/page.tsx", root), "utf8"),
+    readFile(new URL("drizzle/0002_useful_tenebrous.sql", root), "utf8"),
+  ]);
+
+  assert.match(eventRoute, /validateMetricEvent/);
+  assert.doesNotMatch(eventRoute, /getChatGPTUser|verifyOwner|deviceId|email|transcript/i);
+  assert.match(adminRoute, /verifyOwner/);
+  assert.match(metricStore, /GROUP BY day, event/);
+  assert.match(metricStore, /PRIMARY KEY \(day, event, app_build\)/);
+  assert.doesNotMatch(metricStore, /user_id|device_id|email|transcript|recording/i);
+  assert.match(portal, /Product health/);
+  assert.match(portal, /Intl\.NumberFormat\("de-DE"/);
+  assert.match(privacy, /off by default/i);
+  assert.match(migration, /product_metrics/);
+});

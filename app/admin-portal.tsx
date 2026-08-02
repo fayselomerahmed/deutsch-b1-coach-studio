@@ -36,6 +36,11 @@ type Entitlement = {
   status: "active" | "expired" | "disabled";
   updatedAt: number;
 };
+type MetricRow = {
+  day: string;
+  event: string;
+  count: number;
+};
 
 export function AdminPortal({ user }: { user: SignedInUser | null }) {
   const [dashboard, setDashboard] = useState<DashboardStatus | null>(null);
@@ -142,7 +147,7 @@ function CurriculumWorkspace({
   const [minimumBuild, setMinimumBuild] = useState(1);
   const [editor, setEditor] = useState<EditorState | null>(null);
   const [notice, setNotice] = useState<NoticeState | null>(initialNotice);
-  const [workspaceMode, setWorkspaceMode] = useState<"curriculum" | "access">("curriculum");
+  const [workspaceMode, setWorkspaceMode] = useState<"curriculum" | "metrics" | "access">("curriculum");
 
   const publishedByName = useMemo(
     () => new Map(dashboard.files.map((file) => [file.fileName, file])),
@@ -349,6 +354,9 @@ function CurriculumWorkspace({
         <button className={workspaceMode === "curriculum" ? "selected" : ""} onClick={() => setWorkspaceMode("curriculum")}>
           Curriculum
         </button>
+        <button className={workspaceMode === "metrics" ? "selected" : ""} onClick={() => setWorkspaceMode("metrics")}>
+          Product health
+        </button>
         <button className={workspaceMode === "access" ? "selected" : ""} onClick={() => setWorkspaceMode("access")}>
           User access
         </button>
@@ -477,10 +485,119 @@ function CurriculumWorkspace({
             />
           )}
         </>
+      ) : workspaceMode === "metrics" ? (
+        <MetricsManager />
       ) : (
         <AccessManager />
       )}
     </main>
+  );
+}
+
+const metricDefinitions = [
+  { event: "onboardingCompleted", label: "Onboardings", detail: "Learners who reached the course" },
+  { event: "lessonCompleted", label: "Lessons completed", detail: "Proof of active learning" },
+  { event: "speakingCorrectionReceived", label: "Speaking corrections", detail: "High-value speaking moments" },
+  { event: "readinessCheckCompleted", label: "Readiness checks", detail: "B1 intent and exam interest" },
+  { event: "paywallViewed", label: "Paywall views", detail: "Full-course consideration" },
+  { event: "purchaseCompleted", label: "Purchases", detail: "Confirmed by StoreKit" },
+] as const;
+
+function MetricsManager() {
+  const [rows, setRows] = useState<MetricRow[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [notice, setNotice] = useState<NoticeState | null>(null);
+
+  const loadMetrics = useCallback(async () => {
+    setIsLoading(true);
+    setNotice(null);
+    try {
+      const response = await fetch("/api/admin/metrics", { cache: "no-store" });
+      const payload = (await response.json()) as { rows?: MetricRow[]; error?: string };
+      if (!response.ok) throw new Error(payload.error ?? "Product health could not be loaded.");
+      setRows(payload.rows ?? []);
+    } catch (error) {
+      setNotice({ kind: "error", text: error instanceof Error ? error.message : "Product health could not be loaded." });
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => { void loadMetrics(); }, 0);
+    return () => window.clearTimeout(timer);
+  }, [loadMetrics]);
+
+  const totals = useMemo(() => {
+    const result = new Map<string, number>();
+    for (const row of rows) result.set(row.event, (result.get(row.event) ?? 0) + row.count);
+    return result;
+  }, [rows]);
+  const dailyLearning = useMemo(() => {
+    const result = new Map<string, number>();
+    for (const row of rows) {
+      if (row.event === "lessonCompleted") result.set(row.day, (result.get(row.day) ?? 0) + row.count);
+    }
+    return Array.from(result, ([day, count]) => ({ day, count })).slice(-14);
+  }, [rows]);
+  const maximumDaily = Math.max(1, ...dailyLearning.map((item) => item.count));
+  const paywallViews = totals.get("paywallViewed") ?? 0;
+  const purchases = totals.get("purchaseCompleted") ?? 0;
+  const purchaseRate = paywallViews > 0 ? purchases / paywallViews : 0;
+
+  return (
+    <section className="metrics-workspace" aria-labelledby="metrics-title">
+      <div className="metrics-heading">
+        <div>
+          <p className="eyebrow">90-day aggregate</p>
+          <h2 id="metrics-title">Product health</h2>
+          <p>Understand the path from first use to learning value and purchase. Counts include only learners who explicitly enabled anonymous improvement sharing.</p>
+        </div>
+        <button className="secondary-button" onClick={loadMetrics} disabled={isLoading}>Refresh</button>
+      </div>
+
+      {notice && <Notice notice={notice} onDismiss={() => setNotice(null)} />}
+
+      {isLoading ? (
+        <div className="collection-loading"><span className="loading-pulse" />Loading product health...</div>
+      ) : (
+        <>
+          <div className="metric-grid">
+            {metricDefinitions.map((metric) => (
+              <article className="metric-card" key={metric.event}>
+                <strong>{formatNumber(totals.get(metric.event) ?? 0)}</strong>
+                <h3>{metric.label}</h3>
+                <p>{metric.detail}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="metric-detail-grid">
+            <section className="metric-panel">
+              <p className="eyebrow">Decision signal</p>
+              <h3>Paywall-to-purchase rate</h3>
+              <strong className="metric-rate">{formatPercent(purchaseRate)}</strong>
+              <p>Use this with feedback and cohort size. Opt-in totals are directional and should never be treated as a complete census.</p>
+            </section>
+            <section className="metric-panel">
+              <p className="eyebrow">Recent learning</p>
+              <h3>Completed lessons by day</h3>
+              {dailyLearning.length ? (
+                <div className="metric-bars" aria-label="Completed lessons during the last 14 active days">
+                  {dailyLearning.map((item) => (
+                    <span key={item.day} style={{ height: `${Math.max(12, (item.count / maximumDaily) * 100)}%` }} title={`${formatMetricDay(item.day)}: ${formatNumber(item.count)}`} />
+                  ))}
+                </div>
+              ) : (
+                <p className="metric-empty">No opt-in learning totals yet.</p>
+              )}
+            </section>
+          </div>
+
+          <p className="metrics-privacy">No individual events are stored. The database keeps daily totals by app build, with no account, email, device identifier, answers, transcript, or recording.</p>
+        </>
+      )}
+    </section>
   );
 }
 
@@ -999,6 +1116,21 @@ async function digestHex(bytes: Uint8Array) {
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat("de-DE").format(value);
+}
+
+function formatPercent(value: number) {
+  return new Intl.NumberFormat("de-DE", {
+    style: "percent",
+    maximumFractionDigits: 1,
+  }).format(value);
+}
+
+function formatMetricDay(value: string) {
+  return new Intl.DateTimeFormat("de-DE", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(new Date(`${value}T12:00:00Z`));
 }
 
 function formatDate(value: number) {
