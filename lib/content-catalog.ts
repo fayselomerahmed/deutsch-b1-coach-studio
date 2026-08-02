@@ -119,7 +119,82 @@ export function validateContentCollection(fileName: SupportedContentFile, parsed
     const phraseIds = items.flatMap((item) => Array.isArray(item.phrases) ? item.phrases.map((phrase) => String((phrase as JsonObject).id ?? "")) : []);
     if (new Set(phraseIds).size !== phraseIds.length) throw new Error("Every everyday phrase needs a unique ID across all categories.");
   }
+  validateCollectionQuality(fileName, items);
   return items;
+}
+
+function validateCollectionQuality(fileName: SupportedContentFile, items: JsonObject[]) {
+  if (fileName.startsWith("vocab_")) {
+    assertUniqueText(items, "exampleSentence", "German example sentences");
+    for (const item of items) {
+      const id = String(item.id);
+      const example = normalizedText(item.exampleSentence);
+      const translation = normalizedText(item.exampleTranslation);
+      if (example.split(" ").length < 4) throw new Error(`${id} needs a complete real-life example sentence.`);
+      if (translation.split(" ").length < 3) throw new Error(`${id} needs a complete example meaning.`);
+      if (String(item.german).trim().includes(" ") === false && String(item.ttsText).trim().length < 2) {
+        throw new Error(`${id} needs valid German audio text.`);
+      }
+    }
+  }
+
+  if (fileName === "grammar") {
+    for (const item of items) {
+      const id = String(item.id);
+      if ((item.examples as JsonValue[]).length < 2) throw new Error(`${id} needs at least two distinct examples.`);
+      if ((item.practice as JsonValue[]).length < 9) throw new Error(`${id} needs at least nine varied exercises.`);
+      const prompts = (item.practice as JsonObject[]).map((exercise) => normalizedText(exercise.prompt));
+      if (new Set(prompts).size !== prompts.length) throw new Error(`${id} repeats a grammar exercise prompt.`);
+    }
+  }
+
+  if (fileName === "lessons") {
+    assertUniqueText(items, "scenario", "lesson scenarios");
+    for (const item of items) {
+      const id = String(item.id);
+      const minimumPractice = item.level === "B1" ? 8 : 7;
+      if ((item.guidedPractice as JsonValue[]).length < minimumPractice) {
+        throw new Error(`${id} needs at least ${minimumPractice} guided exercises.`);
+      }
+      const listening = item.listening as JsonObject;
+      if (!Array.isArray(listening.questions) || listening.questions.length < 2) {
+        throw new Error(`${id} needs at least two listening checks.`);
+      }
+      const speaking = item.speaking as JsonObject;
+      if (!Array.isArray(speaking.requiredPhrases) || speaking.requiredPhrases.length < 2) {
+        throw new Error(`${id} needs at least two speaking targets.`);
+      }
+      const writing = item.writing as JsonObject;
+      if (!Array.isArray(writing.checklist) || writing.checklist.length < 3) {
+        throw new Error(`${id} needs a practical writing checklist.`);
+      }
+    }
+  }
+
+  if (fileName === "practical_missions") {
+    assertUniqueText(items, "setting", "real-life mission settings");
+    for (const item of items) {
+      const id = String(item.id);
+      if ((item.turns as JsonValue[]).length < 3) throw new Error(`${id} needs at least three conversation turns.`);
+      if ((item.phrases as JsonValue[]).length < 3) throw new Error(`${id} needs at least three reusable phrases.`);
+      if ((item.canDo as JsonValue[]).length < 2) throw new Error(`${id} needs at least two learner outcomes.`);
+    }
+  }
+
+  if (fileName === "everyday_phrases") {
+    const phrases = items.flatMap((item) => item.phrases as JsonObject[]);
+    const german = phrases.map((phrase) => normalizedText(phrase.german));
+    if (new Set(german).size !== german.length) throw new Error("Everyday phrases must not repeat the same German sentence.");
+  }
+}
+
+function assertUniqueText(items: JsonObject[], key: string, label: string) {
+  const values = items.map((item) => normalizedText(item[key]));
+  if (new Set(values).size !== values.length) throw new Error(`Published ${label} must be distinct.`);
+}
+
+function normalizedText(value: JsonValue | undefined) {
+  return String(value ?? "").trim().toLocaleLowerCase("de-DE").replace(/\s+/g, " ");
 }
 
 function validateItem(fileName: SupportedContentFile, item: JsonObject, index: number) {

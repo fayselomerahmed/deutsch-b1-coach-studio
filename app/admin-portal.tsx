@@ -388,13 +388,13 @@ function CurriculumWorkspace({
               <p>{selectedConfig.detail}</p>
             </div>
             <button className="publish-button" onClick={publishCurrent} disabled={!dirty || isPublishing || items.length === 0}>
-              {isPublishing ? "Publishing..." : "Publish to app"}
+              {isPublishing ? "Checking and publishing..." : "Quality check and publish"}
             </button>
           </div>
 
           <div className="impact-note">
             <strong>One update, every learner.</strong>
-            <span>Published changes appear after the app next refreshes. Drafts stay private here.</span>
+            <span>Publishing checks completeness, teaching depth, and repetition first. Approved changes appear after the app next refreshes.</span>
           </div>
 
           {notice && <Notice notice={notice} onDismiss={() => setNotice(null)} />}
