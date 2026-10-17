@@ -1,22 +1,20 @@
 import { isSupportedContentFile, listContentRows } from "../../../../db/content-store";
+import type { SupportedContentFile } from "../../../../lib/content-catalog";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
-  const select = new Set((url.searchParams.get("select") ?? "").split(","));
+  const select = new Set((url.searchParams.get("select") ?? "").split(",").map((field) => field.trim()).filter(Boolean));
   const filter = url.searchParams.get("file_name");
-  let allowedNames: Set<string> | null = null;
+  let fileNames: SupportedContentFile[] | undefined;
 
   if (filter?.startsWith("in.(") && filter.endsWith(")")) {
-    const values = filter.slice(4, -1).split(",").filter(isSupportedContentFile);
-    allowedNames = new Set(values);
+    fileNames = filter.slice(4, -1).split(",").filter(isSupportedContentFile);
   }
 
-  const rows = (await listContentRows()).filter(
-    (row) => !allowedNames || allowedNames.has(row.file_name),
-  );
   const includePayload = select.size === 0 || select.has("payload_base64");
+  const rows = await listContentRows({ includePayload, fileNames });
   const response = rows.map((row) => ({
     file_name: row.file_name,
     version: row.version,

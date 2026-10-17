@@ -1,4 +1,5 @@
 import { env } from "cloudflare:workers";
+import { buildContentReadQuery, type ContentReadOptions } from "../lib/content-read-query";
 import {
   isSupportedContentFile,
   validateContentCollection,
@@ -73,11 +74,15 @@ export async function claimOwnership(userId: string) {
   return getOwnerUserId();
 }
 
-export async function listContentRows() {
+type ContentReadRow = Omit<ContentRow, "payload_base64" | "published_by"> & { payload_base64?: string };
+
+export async function listContentRows(options: ContentReadOptions = {}) {
   await ensureContentSchema();
+  const { sql, bindings } = buildContentReadQuery(options);
   const result = await getContentDb()
-    .prepare("SELECT * FROM content_files ORDER BY file_name")
-    .all<ContentRow>();
+    .prepare(sql)
+    .bind(...bindings)
+    .all<ContentReadRow>();
   return result.results;
 }
 

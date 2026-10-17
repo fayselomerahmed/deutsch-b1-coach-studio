@@ -17,7 +17,7 @@ export async function GET() {
     return Response.json({ error: "This dashboard belongs to another owner." }, { status: 403 });
   }
 
-  const rows = await listContentRows();
+  const rows = await listContentRows({ includePayload: false });
   const versionCounts = await getContentVersionCounts();
   return Response.json({
     requiresActivation: false,

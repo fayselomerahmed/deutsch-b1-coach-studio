@@ -2,12 +2,11 @@ import {
   incrementMetric,
   validateMetricEvent,
 } from "../../../../db/metric-store";
+import { readBoundedJson } from "../../../../lib/bounded-json";
 
 export async function POST(request: Request) {
   try {
-    const contentLength = Number(request.headers.get("content-length") ?? "0");
-    if (contentLength > 1_024) throw new Error("The request is too large.");
-    const payload = (await request.json()) as { event?: unknown; appBuild?: unknown };
+    const payload = (await readBoundedJson(request, 1_024)) as { event?: unknown; appBuild?: unknown };
     const event = validateMetricEvent(payload.event);
     const appBuild = Math.floor(Number(payload.appBuild));
     if (!Number.isSafeInteger(appBuild) || appBuild < 1 || appBuild > 1_000_000) {

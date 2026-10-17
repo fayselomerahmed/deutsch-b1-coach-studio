@@ -1,6 +1,7 @@
 import { getChatGPTUser } from "../../../chatgpt-auth";
 import { rejectCrossOriginWrite } from "../../../../lib/request-security";
 import { parseMinimumBuild } from "../../../../lib/publishing-validation";
+import { readBoundedJson } from "../../../../lib/bounded-json";
 import {
   decodeAndValidatePayload,
   getContentDb,
@@ -22,7 +23,8 @@ export async function POST(request: Request) {
   if (!user) return Response.json({ error: "Owner access is required." }, { status: 403 });
 
   try {
-    const payload = (await request.json()) as {
+    // Allows the existing 4.5 MB base64 curriculum limit plus its small JSON envelope.
+    const payload = (await readBoundedJson(request, 4_510_000)) as {
       fileName?: string;
       payloadBase64?: string;
       sha256?: string;

@@ -2,6 +2,7 @@ import {
   entitlementStatus,
   getEntitlementByAccessId,
 } from "../../../../db/entitlement-store";
+import { readBoundedJson } from "../../../../lib/bounded-json";
 
 export const dynamic = "force-dynamic";
 
@@ -18,9 +19,7 @@ export async function OPTIONS() {
 
 export async function POST(request: Request) {
   try {
-    const contentLength = Number(request.headers.get("content-length") ?? 0);
-    if (contentLength > 1_024) throw new Error("The access request is too large.");
-    const payload = (await request.json()) as { accessId?: string };
+    const payload = (await readBoundedJson(request, 1_024)) as { accessId?: string };
     const accessId = payload.accessId ?? "";
     const row = await getEntitlementByAccessId(accessId);
     const status = entitlementStatus(row);
