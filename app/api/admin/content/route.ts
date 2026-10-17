@@ -1,5 +1,6 @@
 import { getChatGPTUser } from "../../../chatgpt-auth";
 import { rejectCrossOriginWrite } from "../../../../lib/request-security";
+import { parseMinimumBuild } from "../../../../lib/publishing-validation";
 import {
   decodeAndValidatePayload,
   getContentDb,
@@ -25,10 +26,11 @@ export async function POST(request: Request) {
       fileName?: string;
       payloadBase64?: string;
       sha256?: string;
-      minimumBuild?: number;
+      minimumBuild?: unknown;
     };
     const fileName = payload.fileName?.trim() ?? "";
     const payloadBase64 = payload.payloadBase64 ?? "";
+    const minimumBuild = parseMinimumBuild(payload.minimumBuild);
     const itemCount = decodeAndValidatePayload(fileName, payloadBase64);
     const calculatedHash = await sha256Hex(payloadBase64);
     if (calculatedHash !== payload.sha256?.toLowerCase()) {
@@ -36,7 +38,6 @@ export async function POST(request: Request) {
     }
 
     const version = Date.now();
-    const minimumBuild = Math.max(1, Math.floor(payload.minimumBuild ?? 1));
     const db = getContentDb();
     await db.batch([
       db.prepare(`INSERT INTO content_versions
