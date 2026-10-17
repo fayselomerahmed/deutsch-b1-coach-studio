@@ -1,15 +1,17 @@
 # Deployment readiness
 
-Status: production build verified locally; deployment security and end-to-end service checks are still required.
+Status: production build and repository checks verified in hosted CI; deployment security and end-to-end service checks are still required.
 
 ## Verified on 2026-10-17
 
-- Clean `npm ci` on Node 24.19.0.
-- `npm test`: complete Vinext/Cloudflare build and 11 passing checks.
+Evidence: [CI run 39064138260](https://github.com/fayselomerahmed/deutsch-b1-coach-studio/actions/runs/39064138260), commit `949157f`.
+
+- Clean `npm ci` on Node 24.21.0 in hosted CI.
+- `npm test`: complete Vinext/Cloudflare production build and 15 passing checks.
 - `npm run typecheck` and `npm run lint`: pass.
-- Runtime tests cover curriculum draft structure, stricter publication quality, malformed records, stable-ID uniqueness, and cross-origin write rejection.
+- Runtime tests cover curriculum draft structure, stricter publication quality, malformed records, stable-ID uniqueness, cross-origin write rejection, and minimum-build validation. Supplied minimum-build values must be finite, positive safe integers; omitted values default to `1`. Invalid values are rejected rather than coerced or rounded.
 - Next.js is updated to 16.4.2 and the production-dependency audit reports zero known findings. The full toolchain audit still has advisories in development/build dependencies; a zero production-only audit does not certify bundled worker code as safe.
-- Same-major security updates use Vite 8.3.4, Cloudflare's Vite plugin 1.64.0, and Wrangler 4.151.1. The resolved tree uses sharp 0.35.5, undici 7.29.1, and ws 8.21.0. A scoped Vinext override updates its pinned image-size parser from 2.0.2 to 2.0.4 without migrating Vinext's public API. Build, 11 tests, type checking, and lint all pass with this tree.
+- Same-major security updates use Vite 8.3.4, Cloudflare's Vite plugin 1.64.0, and Wrangler 4.151.1. The resolved tree uses sharp 0.35.5, undici 7.29.1, and ws 8.21.0. A scoped Vinext override updates its pinned image-size parser from 2.0.2 to 2.0.4 without migrating Vinext's public API. The production build, 15 checks, type checking, lint, and zero-finding production-dependency audit all pass with this tree.
 
 The test suite includes source-contract checks; it is not a browser or D1 integration suite. The hosted workflow repeats the build, tests, type checking, linting, and production-dependency audit.
 

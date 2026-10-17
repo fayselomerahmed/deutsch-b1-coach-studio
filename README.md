@@ -21,7 +21,7 @@ Curriculum editing should not require an iOS release for every change, and a lea
 
 ## Engineering highlights
 
-**A stable contract with the iOS client.** [Publishing](app/api/admin/content/route.ts) validates a supported collection and its SHA-256 digest, then writes the current file and version history in a D1 batch. Minimum-build targeting supports client compatibility. Hashing checks integrity; it is not a substitute for authenticated publishing.
+**A stable contract with the iOS client.** [Publishing](app/api/admin/content/route.ts) validates a supported collection and its SHA-256 digest, then writes the current file and version history in a D1 batch. Minimum-build targeting supports client compatibility: supplied values must be finite, positive safe integers; an omitted value defaults to `1`. Hashing checks integrity; it is not a substitute for authenticated publishing.
 
 **Drafts and releases have different validation needs.** The [content catalog](lib/content-catalog.ts) checks structure for incremental draft editing and applies stronger quality rules before publication. This allows incomplete seed material to be improved without weakening the publication gate.
 
@@ -29,9 +29,9 @@ Curriculum editing should not require an iOS release for every change, and a lea
 
 ## Verified build and checks
 
-The [verified CI run](https://github.com/fayselomerahmed/deutsch-b1-coach-studio/actions/runs/39037286238) passed a clean Node 24 installation, production build, **11 automated checks**, TypeScript validation, ESLint, and the production-dependency audit on 2026-10-17.
+The [verified CI run](https://github.com/fayselomerahmed/deutsch-b1-coach-studio/actions/runs/39064138260) at commit `949157f` passed a clean Node 24 installation, production build, **15 automated checks**, TypeScript validation, ESLint, and a production-dependency audit with **zero reported vulnerabilities** on 2026-10-17.
 
-Checks cover runtime content validation, malformed records, duplicate IDs, cross-origin rejection, and source contracts. They are not browser or D1 end-to-end tests. The full build-tool audit still has documented upstream advisories; a passing production-only audit is not a blanket security certification.
+Checks cover runtime content validation, malformed records, duplicate IDs, cross-origin rejection, strict minimum-build validation, and source contracts. They are not browser or D1 end-to-end tests. The full build-tool audit still has documented upstream advisories; a passing production-only audit is not a blanket security certification.
 
 ## Run locally
 
