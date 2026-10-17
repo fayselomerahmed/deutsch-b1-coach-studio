@@ -9,6 +9,7 @@ Status: production build verified locally; deployment security and end-to-end se
 - `npm run typecheck` and `npm run lint`: pass.
 - Runtime tests cover curriculum draft structure, stricter publication quality, malformed records, stable-ID uniqueness, and cross-origin write rejection.
 - Next.js is updated to 16.4.2 and the production-dependency audit reports zero known findings. The full toolchain audit still has advisories in development/build dependencies; a zero production-only audit does not certify bundled worker code as safe.
+- Same-major security updates use Vite 8.3.4, Cloudflare's Vite plugin 1.64.0, and Wrangler 4.151.1. The resolved tree uses sharp 0.35.5, undici 7.29.1, and ws 8.21.0. A scoped Vinext override updates its pinned image-size parser from 2.0.2 to 2.0.4 without migrating Vinext's public API. Build, 11 tests, type checking, and lint all pass with this tree.
 
 The test suite includes source-contract checks; it is not a browser or D1 integration suite. The hosted workflow repeats the build, tests, type checking, linting, and production-dependency audit.
 
@@ -27,4 +28,10 @@ The checked-in hosting project ID is unset. Supply your own deployment configura
 - [ ] Browser checks for keyboard/screen-reader access, empty/error/loading states, editing, publishing, and restoration.
 - [ ] Deployment-specific operator identity, privacy policy, private support/privacy contact, and retention/deletion process.
 - [ ] Review framework advisories, dependency audit results, and the Vinext compatibility surface before every deployment.
-- [ ] Resolve the remaining Vinext/Vite/Cloudflare/Drizzle build-tool advisories in a separately tested toolchain upgrade. Do not expose development or preview servers publicly or deploy unreviewed uploaded images while this gate is open.
+- [ ] Resolve the remaining build-tool advisories described below before a production security claim. Do not expose development or preview servers publicly, and build only trusted source while this gate is open.
+
+## Remaining dependency gates
+
+The unresolved high advisory is [braces stack exhaustion](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm); upstream lists no patched version as of 2026-10-17. It reaches this tree through `eslint-config-next → @next/eslint-plugin-next → fast-glob → micromatch` and `vinext → vite-plugin-commonjs → vite-plugin-dynamic-import → fast-glob`. These tools process build/lint patterns, not user-supplied application form values. This reduces the exposure of this specific use, but does not remove the advisory. A safe fix needs upstream removal/repair or a reviewed toolchain migration, not a fictitious version override.
+
+The remaining moderate chain is `drizzle-kit → @esbuild-kit/esm-loader → @esbuild-kit/core-utils → esbuild`. Its embedded esbuild is affected by the [development-server request exposure advisory](https://github.com/advisories/GHSA-67mh-4wv8-2f99). The database migration tooling is not an application server; never expose its development tooling publicly. The audit's automatic proposal downgrades Drizzle Kit to 0.18.1, which is not a safe drop-in fix for this schema/migration setup. Keep this as an explicit migration gate rather than running a forced downgrade.
