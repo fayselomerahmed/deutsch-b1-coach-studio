@@ -25,13 +25,17 @@ Curriculum editing should not require an iOS release for every change, and a lea
 
 **Drafts and releases have different validation needs.** The [content catalog](lib/content-catalog.ts) checks structure for incremental draft editing and applies stronger quality rules before publication. This allows incomplete seed material to be improved without weakening the publication gate.
 
+**Read and parse only what is needed.** [Metadata queries](lib/content-read-query.ts) exclude base64 curriculum payloads inside D1 and bind collection filters in SQL. A [streamed JSON reader](lib/bounded-json.ts) enforces actual UTF-8 byte limits before parsing, including requests without a trustworthy `Content-Length` header. Gateway rate limits and staging integration checks remain necessary.
+
 **Explicit trust and privacy boundaries.** Owner checks protect writes; [request protection](lib/request-security.ts) rejects cross-origin browser mutations. The [identity adapter](app/chatgpt-auth.ts) relies on a trusted gateway—not arbitrary internet-supplied headers. [Access records](db/entitlement-store.ts) store hashes and suffixes of Access IDs separately from curriculum and aggregate metrics.
 
 ## Verified build and checks
 
-The [verified CI run](https://github.com/fayselomerahmed/deutsch-b1-coach-studio/actions/runs/39064138260) at commit `949157f` passed a clean Node 24 installation, production build, **15 automated checks**, TypeScript validation, ESLint, and a production-dependency audit with **zero reported vulnerabilities** on 2026-10-17.
+The [verified CI run](https://github.com/fayselomerahmed/deutsch-b1-coach-studio/actions/runs/39072623404) at commit `75e33e8` passed a clean Node 24 installation, production build, **27 automated checks**, TypeScript validation, ESLint, and a production-dependency audit with **zero reported vulnerabilities** on 2026-10-17.
 
-Checks cover runtime content validation, malformed records, duplicate IDs, cross-origin rejection, strict minimum-build validation, and source contracts. They are not browser or D1 end-to-end tests. The full build-tool audit still has documented upstream advisories; a passing production-only audit is not a blanket security certification.
+Checks cover runtime content validation, malformed records, duplicate IDs, cross-origin rejection, strict minimum-build validation, SQL projection/filtering, streamed byte limits, and source contracts. They are not browser or D1 end-to-end tests. The full build-tool audit still has documented upstream advisories; a passing production-only audit is not a blanket security certification.
+
+Documentation-only pushes skip the production rebuild; pull requests and manual runs still execute all build checks. Secret scans remain active for every push.
 
 ## Run locally
 
