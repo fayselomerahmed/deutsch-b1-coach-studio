@@ -1,4 +1,5 @@
 import { getChatGPTUser } from "../../../../chatgpt-auth";
+import { rejectCrossOriginWrite } from "../../../../../lib/request-security";
 import {
   ContentRow,
   getContentDb,
@@ -7,6 +8,8 @@ import {
 } from "../../../../../db/content-store";
 
 export async function POST(request: Request) {
+  const rejection = rejectCrossOriginWrite(request);
+  if (rejection) return rejection;
   const user = await getChatGPTUser();
   if (!user || !(await verifyOwner(user.userId))) {
     return Response.json({ error: "Owner access is required." }, { status: 403 });

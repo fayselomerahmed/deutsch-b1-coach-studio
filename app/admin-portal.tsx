@@ -9,6 +9,7 @@ import {
   managedFiles,
   selectOptions,
   validateContentCollection,
+  validateDraftCollection,
   type JsonObject,
   type JsonValue,
   type SupportedContentFile,
@@ -176,7 +177,7 @@ function CurriculumWorkspace({
         parsed = await includedResponse.json();
         setSource("included");
       }
-      setItems(validateContentCollection(fileName, parsed));
+      setItems(validateDraftCollection(fileName, parsed));
       setDirty(false);
       setSearch("");
       setLevel("All");
@@ -229,7 +230,7 @@ function CurriculumWorkspace({
       const nextItems = editor?.originalId
         ? items.map((item) => item.id === editor.originalId ? nextItem : item)
         : [...items, nextItem];
-      validateContentCollection(selectedFile, nextItems);
+      validateDraftCollection(selectedFile, nextItems);
       setItems(nextItems);
       setDirty(true);
       setEditor(null);

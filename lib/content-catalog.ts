@@ -109,6 +109,13 @@ export function isSupportedContentFile(value: string): value is SupportedContent
 }
 
 export function validateContentCollection(fileName: SupportedContentFile, parsed: unknown): JsonObject[] {
+  const items = validateDraftCollection(fileName, parsed);
+  validateCollectionQuality(fileName, items);
+  return items;
+}
+
+/** Drafts must be structurally safe, but can be edited incrementally before publication review. */
+export function validateDraftCollection(fileName: SupportedContentFile, parsed: unknown): JsonObject[] {
   if (!Array.isArray(parsed) || parsed.length === 0) throw new Error("Keep at least one item in this section before publishing.");
   const items = parsed as JsonObject[];
   items.forEach((item, index) => validateItem(fileName, item, index));
@@ -119,7 +126,6 @@ export function validateContentCollection(fileName: SupportedContentFile, parsed
     const phraseIds = items.flatMap((item) => Array.isArray(item.phrases) ? item.phrases.map((phrase) => String((phrase as JsonObject).id ?? "")) : []);
     if (new Set(phraseIds).size !== phraseIds.length) throw new Error("Every everyday phrase needs a unique ID across all categories.");
   }
-  validateCollectionQuality(fileName, items);
   return items;
 }
 

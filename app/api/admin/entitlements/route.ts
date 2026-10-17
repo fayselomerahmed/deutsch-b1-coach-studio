@@ -1,4 +1,5 @@
 import { getChatGPTUser } from "../../../chatgpt-auth";
+import { rejectCrossOriginWrite } from "../../../../lib/request-security";
 import { verifyOwner } from "../../../../db/content-store";
 import {
   entitlementStatus,
@@ -36,6 +37,8 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const rejection = rejectCrossOriginWrite(request);
+  if (rejection) return rejection;
   const user = await requireOwner();
   if (!user) return Response.json({ error: "Owner access is required." }, { status: 403 });
 
@@ -82,6 +85,8 @@ export async function POST(request: Request) {
 }
 
 export async function DELETE(request: Request) {
+  const rejection = rejectCrossOriginWrite(request);
+  if (rejection) return rejection;
   const user = await requireOwner();
   if (!user) return Response.json({ error: "Owner access is required." }, { status: 403 });
   try {

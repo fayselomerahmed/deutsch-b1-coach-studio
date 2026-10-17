@@ -72,12 +72,12 @@ export default function SupportPage() {
         <section>
           <h2>Still need help?</h2>
           <p>
-            Email Deutsch Coach support with the app version from Settings &gt; About
-            and a short description of what happened. Never include passwords, payment
-            details, or your private Access ID.
+            Open a project issue with the app version from Settings &gt; About and a
+            short description of what happened. Issues are public: never include
+            personal data, passwords, payment details, or your private Access ID.
           </p>
-          <a className="public-button" href="mailto:fayseburns@gmail.com?subject=Deutsch%20Coach%20Support">
-            Email support
+          <a className="public-button" href="https://github.com/fayselomerahmed/deutsch-b1-coach-studio/issues">
+            Open project support
           </a>
         </section>
       </div>

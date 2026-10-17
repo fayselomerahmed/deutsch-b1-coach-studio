@@ -1,7 +1,10 @@
 import { getChatGPTUser } from "../../../chatgpt-auth";
+import { rejectCrossOriginWrite } from "../../../../lib/request-security";
 import { activationCode, claimOwnership, getOwnerUserId } from "../../../../db/content-store";
 
 export async function POST(request: Request) {
+  const rejection = rejectCrossOriginWrite(request);
+  if (rejection) return rejection;
   const user = await getChatGPTUser();
   if (!user) return Response.json({ error: "Sign in is required." }, { status: 401 });
 

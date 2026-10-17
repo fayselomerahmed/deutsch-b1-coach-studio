@@ -85,9 +85,10 @@ export default function PrivacyPage() {
         <section>
           <h2>Questions</h2>
           <p>
-            Deutsch Coach is operated by Fayse Burns. For a privacy request or question,
-            email fayseburns@gmail.com or visit the support page. Requests are handled
-            without asking for passwords, payment details, or your private Access ID.
+            For project support, visit the support page. Do not post personal data in
+            public issues. A production deployment must publish its operator and a
+            private privacy-request contact before accepting real users. Never share
+            passwords, payment details, or your private Access ID.
           </p>
           <Link className="public-button" href="/support">Open support</Link>
         </section>
